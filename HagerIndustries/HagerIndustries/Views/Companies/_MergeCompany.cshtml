@@ -1,0 +1,967 @@
+﻿@model HagerIndustries.ViewModels.CompanyMerge
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered" id="tblGrid table-sm">
+                <colgroup>
+                    <col class="bg-light" />
+                    <col class="" />
+                    <col class="" />
+                </colgroup>
+                <thead id="tblHead">
+                    <tr>
+                        <th>Details</th>
+                        <th>
+                            <div class="custom-control custom-checkbox">
+                                <input class="selectAllPrimary custom-control-input" id="selectAllPrimary" type="checkbox" name="company" value="@Model.Primary.ID" />
+                                <label for="selectAllPrimary" class="custom-control-label w-100">@Html.DisplayFor(model => model.Primary.CompName)</label>
+                            </div>
+
+
+                        </th>
+                        <th class="text-right">
+                            <div class="">
+                                <input class="selectAllMerge custom-control-input hidden " id="selectAllMerge" type="checkbox" name="company" value="@Model.Merger.ID" />
+                                <label class="">@Html.DisplayFor(model => model.Merger.CompName)</label>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>
+
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.CompName)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @*<div class="custom-control custom-checkbox"><input class="custom-control-input chkPrimary allcheck" type="checkbox" data-chkfor="primary" name="CompName" value="@Model.Primary.CompName" />*@
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayFor(model => model.Primary.CompName)</label>
+                            </div>
+
+                        </td>
+                        <td>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayFor(model => model.Merger.CompName)</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.CompLocation)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck" id="CompLocation'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="CompLocation" value="@Model.Primary.CompLocation" />
+
+                                <label class="custom-control-label w-100" for="CompLocation'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.CompLocation)</label>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="CompLocation'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="CompLocation" value="@Model.Merger.CompLocation" />
+                                <label class="custom-control-label w-100" for="CompLocation'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.CompLocation)</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.CreditCheck)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck" id="CreditCheck'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="CreditCheck" value="@Model.Primary.CreditCheck" />
+
+                                <label class="custom-control-label w-100" for="CreditCheck'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.CreditCheck)</label>
+                            </div>
+
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="CreditCheck'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="CreditCheck" value="@Model.Merger.CreditCheck" />
+                                <label class="custom-control-label w-100" for="CreditCheck'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.CreditCheck)</label>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.CreditCheckDate)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck" id="CreditCheckDate'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="CreditCheckDate" value="@Model.Primary.CreditCheckDate" />
+
+                                <label class="custom-control-label w-100" for="CreditCheckDate'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.CreditCheckDate)</label>
+                            </div>
+
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="CreditCheckDate'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="CreditCheckDate" value="@Model.Merger.CreditCheckDate" />
+                                <label class="custom-control-label w-100" for="CreditCheckDate'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.CreditCheckDate)</label>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.CompPhone)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck" id="CompPhone'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="CompPhone" value="@Model.Primary.CompPhone" />
+
+                                <label class="custom-control-label w-100" for="CompPhone'@Model.Primary.ID'"> @Html.DisplayFor(model => model.Primary.CompPhone)</label>
+                            </div>
+
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="CompPhone'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="CompPhone" value="@Model.Merger.CompPhone" />
+                                <label class="custom-control-label w-100" for="CompPhone'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.CompPhone)</label>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.CompWebsite)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck" id="CompWebsite'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="CompWebsite" value="@Model.Primary.CompWebsite" />
+
+                                <label class="custom-control-label w-100" for="CompWebsite'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.CompWebsite)</label>
+                            </div>
+
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="CompWebsite'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="CompWebsite" value="@Model.Merger.CompWebsite" />
+                                <label class="custom-control-label w-100" for="CompWebsite'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.CompWebsite)</label>
+
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.IsActive)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck" id="IsActive'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="IsActive" value="@Model.Primary.IsActive" />
+
+                                <label class="custom-control-label w-100" for="IsActive'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.IsActive)</label>
+
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="IsActive'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="IsActive" value="@Model.Merger.IsActive" />
+                                <label class="custom-control-label w-100" for="IsActive'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.IsActive)</label>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.Note)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck" id="Note'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="Note" value="@Model.Primary.Note" />
+
+                                <label class="custom-control-label w-100" for="Note'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.Note)</label>
+
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="Note'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="Note" value="@Model.Merger.Note" />
+                                <label class="custom-control-label w-100" id="Note'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.Note)</label>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">
+
+                            <div class="">
+                                <label class="custom-control text-left"></label>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+
+                            <div class="">
+                                <label class="custom-control text-left">Billing</label>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck " id="BillingData'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="BillingData" value="primary" />
+                                <label class="custom-control-label w-100" for="BillingData'@Model.Primary.ID'"> @Html.DisplayFor(model => model.Primary.CompName)</label>
+
+
+                            </div>
+                        </th>
+                        <th class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="BillingData'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="BillingData" value="second" />
+                                <label class="custom-control-label w-100" for="BillingData'@Model.Merger.ID'"> @Html.DisplayFor(model => model.Merger.CompName)</label>
+
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.BillingCountry)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @if (@Model.Primary.BillingCountry != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkPrimary allcheck hidden" id="BillingCountry'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="BillingCountry" value="@Model.Primary.BillingCountry.countryName" />
+
+                    <label class=" w-100" for="BillingCountry'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.BillingCountry.countryName)</label>
+
+                </div>}
+                        </td>
+                        <td class="text-right">
+                            @if (@Model.Merger.BillingCountry != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkMerge allcheck hidden" id="BillingCountry'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="BillingCountry" value="@Model.Merger.BillingCountry.countryName" />
+                    <label class=" w-100" for="BillingCountry'@Model.Merger.ID'"> @Html.DisplayFor(model => model.Merger.BillingCountry.countryName)</label>
+
+                </div>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.BillingProvince)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @if (@Model.Primary.BillingProvince != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkPrimary allcheck hidden" id="BillingProvince'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="BillingProvince" value="@Model.Primary.BillingProvince.provName" />
+
+                    <label class=" w-100" for="BillingProvince'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.BillingProvince.provName)</label>
+
+                </div>}
+                        </td>
+                        <td class="text-right">
+                            @if (@Model.Merger.BillingProvince != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkMerge allcheck hidden" id="BillingProvince'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="BillingProvince" value="@Model.Merger.BillingProvince.provName" />
+                    <label class=" w-100" for="BillingProvince'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.BillingProvince.provName)</label>
+
+                </div>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.BillingCityID)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @if (@Model.Primary.BillingCity != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkPrimary allcheck hidden" id="BillingCity'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="BillingCity" value="@Model.Primary.BillingCity.cityName" />
+
+                    <label class=" w-100" for="BillingCity'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.BillingCity.cityName)</label>
+
+                </div>}
+                        </td>
+                        <td class="text-right">
+                            @if (@Model.Merger.BillingCity != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkMerge allcheck hidden" id="BillingCity'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="BillingCity" value="@Model.Merger.BillingCity.cityName" />
+                    <label class=" w-100" for="BillingCity'@Model.Merger.ID'"> @Html.DisplayFor(model => model.Merger.BillingCity.cityName)</label>
+
+                </div>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.BillingAddressOne)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck hidden" id="BillingAddressOne'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="BillingAddressOne" value="@Model.Primary.BillingAddressOne" />
+
+                                <label class=" w-100" for="BillingAddressOne'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.BillingAddressOne)</label>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck hidden" id="BillingAddressOne'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="BillingAddressOne" value="@Model.Merger.BillingAddressOne" />
+                                <label class=" w-100" for="BillingAddressOne'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.BillingAddressOne)</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.BillingAddressTwo)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck hidden" id="BillingAddressTwo'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="BillingAddressTwo" value="@Model.Primary.BillingAddressTwo" />
+
+                                <label class=" w-100" for="BillingAddressTwo'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.BillingAddressTwo)</label>
+
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck hidden" id="BillingAddressTwo'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="BillingAddressTwo" value="@Model.Merger.BillingAddressTwo" />
+                                <label class=" w-100" for="BillingAddressTwo'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.BillingAddressTwo)</label>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.BillingPostal)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck hidden" id="BillingPostal'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="BillingPostal" value="@Model.Primary.BillingPostal" />
+
+                                <label class=" w-100" for="BillingPostal'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.BillingPostal)</label>
+
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck hidden" id="BillingPostal'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="BillingPostal" value="@Model.Merger.BillingPostal" />
+                                <label class=" w-100" for="BillingPostal'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.BillingPostal)</label>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">
+
+                            <div class="">
+                                <label class="custom-control text-left"></label>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+
+                            <div class="">
+                                <label class="custom-control text-left">Shipping</label>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck " id="ShippingData'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="ShippingData" value="primary" />
+                                <label class="custom-control-label w-100" for="ShippingData'@Model.Primary.ID'"> @Html.DisplayFor(model => model.Primary.CompName)</label>
+
+
+                            </div>
+                        </th>
+                        <th class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="ShippingData'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="ShippingData" value="second" />
+                                <label class="custom-control-label w-100" for="ShippingData'@Model.Merger.ID'"> @Html.DisplayFor(model => model.Merger.CompName)</label>
+
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.ShippingCountry)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @if (@Model.Primary.ShippingCountry != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkPrimary allcheck ShippingCheck hidden" id="ShippingCountry'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="ShippingCountry" value="@Model.Primary.ShippingCountry.countryName" />
+
+                    <label class=" w-100" for="ShippingCountry'@Model.Primary.ID'"> @Html.DisplayFor(model => model.Primary.ShippingCountry.countryName)</label>
+
+                </div>}
+                        </td>
+                        <td class="text-right">
+                            @if (@Model.Merger.ShippingCountry != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkMerge allcheck ShippingCheck hidden" id="ShippingCountry'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="ShippingCountry" value="@Model.Merger.ShippingCountry.countryName" />
+                    <label class=" w-100" for="ShippingCountry'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.ShippingCountry.countryName)</label>
+
+                </div>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.ShippingProvince)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @if (@Model.Primary.ShippingProvince != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkPrimary allcheck ShippingCheck hidden" id="ShippingProvince'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="ShippingProvince" value="@Model.Primary.ShippingProvince.provName" />
+
+                    <label class=" w-100" for="ShippingProvince'@Model.Primary.ID'"> @Html.DisplayFor(model => model.Primary.ShippingProvince.provName)</label>
+
+                </div>}
+                        </td>
+                        <td class="text-right">
+                            @if (@Model.Merger.ShippingProvince != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkMerge allcheck ShippingCheck hidden" id="ShippingProvince'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="ShippingProvince" value="@Model.Merger.ShippingProvince.provName" />
+                    <label class=" w-100" for="ShippingProvince'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.ShippingProvince.provName)</label>
+
+                </div>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.ShippingCity)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @if (@Model.Primary.ShippingCity != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkPrimary allcheck ShippingCheck hidden" id="ShippingCity'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="ShippingCity" value="@Model.Primary.ShippingCity.cityName" />
+
+                    <label class=" w-100" for="ShippingCity'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.ShippingCity.cityName)</label>
+
+                </div>}
+                        </td>
+                        <td class="text-right">
+                            @if (@Model.Merger.ShippingCity != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkMerge allcheck ShippingCheck hidden" id="ShippingCity'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="ShippingCity" value="@Model.Merger.ShippingCity.cityName" />
+                    <label class=" w-100" for="ShippingCity'@Model.Merger.ID'">  @Html.DisplayFor(model => model.Merger.ShippingCity.cityName)</label>
+
+                </div>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.ShippingAddressOne)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck hidden" id="ShippingAddressOne'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="ShippingAddressOne" value="@Model.Primary.ShippingAddressOne" />
+
+                                <label class=" w-100" for="ShippingAddressOne'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.ShippingAddressOne)</label>
+
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck hidden" id="ShippingAddressOne'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="ShippingAddressOne" value="@Model.Merger.ShippingAddressOne" />
+                                <label class=" w-100" for="ShippingAddressOne'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.ShippingAddressOne)</label>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.ShippingAddressTwo)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck hidden" id="ShippingAddressTwo'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="ShippingAddressTwo" value="@Model.Primary.ShippingAddressTwo" />
+
+                                <label class=" w-100" for="ShippingAddressTwo'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.ShippingAddressTwo)</label>
+
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck hidden" id="ShippingAddressTwo'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="ShippingAddressTwo" value="@Model.Merger.ShippingAddressTwo" />
+                                <label class=" w-100" for="ShippingAddressTwo'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.ShippingAddressTwo)</label>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.ShippingPostal)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck hidden" id="ShippingPostal'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="ShippingPostal" value="@Model.Primary.ShippingPostal" />
+
+                                <label class=" w-100" for="ShippingPostal'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.ShippingPostal)</label>
+
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck hidden" id="ShippingPostal'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="ShippingPostal" value="@Model.Merger.ShippingPostal" />
+                                <label class=" w-100" for="ShippingPostal'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.ShippingPostal)</label>
+
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th colspan="3">
+
+                            <div class="">
+                                <label class="custom-control text-left"></label>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.Currency)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @if (@Model.Primary.Currency != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkPrimary allcheck" id="Currency'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="Currency" value="@Model.Primary.Currency.CurrencyName" />
+
+                    <label class="custom-control-label w-100" for="Currency'@Model.Primary.ID'"> @Html.DisplayFor(model => model.Primary.Currency.CurrencyName)</label>
+
+                </div>}
+                        </td>
+                        <td class="text-right">
+                            @if (@Model.Merger.Currency != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkMerge allcheck" id="Currency'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="Currency" value="@Model.Merger.Currency.CurrencyName" />
+                    <label class="custom-control-label w-100" for="Currency'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.Currency.CurrencyName)</label>
+
+                </div>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.BillingTerm)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @if (@Model.Primary.BillingTerm != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkPrimary allcheck" id="BillingTerm'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="BillingTerm" value="@Model.Primary.BillingTerm.TermName" />
+
+                    <label class="custom-control-label w-100" for="BillingTerm'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.BillingTerm.TermName)</label>
+
+                </div>}
+                        </td>
+                        <td class="text-right">
+                            @if (@Model.Merger.BillingTerm != null)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkMerge allcheck" id="BillingTerm'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="BillingTerm" value="@Model.Merger.BillingTerm.TermName" />
+                    <label class="custom-control-label w-100" for="BillingTerm'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.BillingTerm.TermName)</label>
+
+                </div>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.IsContractor)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck" id="IsContractor'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="IsContractor" value="@Model.Primary.IsContractor" />
+
+                                <label class="custom-control-label w-100" for="IsContractor'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.IsContractor)</label>
+
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="IsContractor'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="IsContractor" value="@Model.Merger.IsContractor" />
+                                <label class="custom-control-label w-100" for="IsContractor'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.IsContractor)</label>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.IsVendor)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck" id="IsVendor'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="IsVendor" value="@Model.Primary.IsVendor" />
+
+                                <label class="custom-control-label w-100" for="IsVendor'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.IsVendor)</label>
+
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="IsVendor'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="IsVendor" value="@Model.Merger.IsVendor" />
+                                <label class="custom-control-label w-100" for="IsVendor'@Model.Merger.ID'"> @Html.DisplayFor(model => model.Merger.IsVendor)</label>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.IsCustomer)</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkPrimary allcheck" id="IsCustomer'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="IsCustomer" value="@Model.Primary.IsCustomer" />
+
+                                <label class="custom-control-label w-100" for="IsCustomer'@Model.Primary.ID'">@Html.DisplayFor(model => model.Primary.IsCustomer)</label>
+
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input chkMerge allcheck" id="IsCustomer'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="IsCustomer" value="@Model.Merger.IsCustomer" />
+                                <label class="custom-control-label w-100" for="IsCustomer'@Model.Merger.ID'">@Html.DisplayFor(model => model.Merger.IsCustomer)</label>
+
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.CompanyContractors)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @if (@Model.Primary.CompanyContractors.Count > 0)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkPrimary allcheck" id="CompanyContractors'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="CompanyContractors" value="@Model.Primary.CompanyContractors" />
+
+                    <label class="custom-control-label w-100" for="CompanyContractors'@Model.Primary.ID'">
+                        @{ int contractorCount = Model.Primary.CompanyContractors.Count; if (contractorCount > 0)
+                            {
+                                string firstContractor = Model.Primary.CompanyContractors.FirstOrDefault().Contractor.ContractName; if (contractorCount > 1)
+                                {
+                                    string contractorList = ""; var c = Model.Primary.CompanyContractors.ToList(); for (int i = 1; i < contractorCount; i++) { contractorList += c[i].Contractor.ContractName + " <br />"; } <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.Primary.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.Primary.ID)">
+                                        @firstContractor... <span class="badge badge-info">@contractorCount</span>
+                                    </a>
+                                                            <div class="collapse" id="collapseSum@(Model.Primary.ID)">
+                                                                @Html.Raw(contractorList)
+                                                            </div> }
+                                                        else
+                                                        {
+                                    @firstContractor }
+                            } }
+                    </label>
+                </div>}
+                        </td>
+                        <td class="text-right">
+                            @if (@Model.Merger.CompanyContractors.Count > 0)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkMerge allcheck" id="CompanyContractors'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="CompanyContractors" value="@Model.Merger.CompanyContractors" />
+                    <label class="custom-control-label w-100" for="CompanyContractors'@Model.Merger.ID'">
+                        @{ int contractorCountMerge = Model.Merger.CompanyContractors.Count;
+                            if (contractorCountMerge > 0)
+                            {
+                                string firstContractor = Model.Merger.CompanyContractors.FirstOrDefault().Contractor.ContractName;
+                                if (contractorCountMerge > 1)
+                                {
+                                    string contractorList = "";
+                                    var c = Model.Merger.CompanyContractors.ToList();
+                                    for (int i = 1; i < contractorCountMerge; i++)
+                                    {
+                                        contractorList += c[i].Contractor.ContractName + " <br />";
+                                    }
+                <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.Merger.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.Merger.ID)">
+                    @firstContractor... <span class="badge badge-info">@contractorCountMerge</span>
+                </a>
+                                        <div class="collapse" id="collapseSum@(Model.Merger.ID)">
+                                            @Html.Raw(contractorList)
+                                        </div> }
+                                    else
+                                    {
+                @firstContractor }
+        } }
+                    </label>
+                </div>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.CompanyVendors)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @if (@Model.Primary.CompanyVendors.Count > 0)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkPrimary allcheck" id="CompanyVendors'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="CompanyVendors" value="@Model.Primary.CompanyVendors" />
+                    <label class="custom-control-label w-100" for="CompanyVendors'@Model.Primary.ID'">
+                        @{ int vendorCount = Model.Primary.CompanyVendors.Count;
+                            if (vendorCount > 0)
+                            {
+                                string firstVendor = Model.Primary.CompanyVendors.FirstOrDefault().Vendor.VendorName;
+                                if (vendorCount > 1)
+                                {
+                                    string vendorList = "";
+                                    var c = Model.Primary.CompanyVendors.ToList();
+                                    for (int i = 1; i < vendorCount; i++)
+                                    {
+                                        vendorList += c[i].Vendor.VendorName + " <br />";
+                                    }
+                <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.Primary.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.Primary.ID)">
+                    @firstVendor... <span class="badge badge-info">@vendorCount</span>
+                </a>
+                                        <div class="collapse" id="collapseSum@(Model.Primary.ID)">
+                                            @Html.Raw(vendorList)
+                                        </div> }
+                                    else
+                                    {
+                @firstVendor }
+        } }
+                    </label>
+                </div>}
+                        </td>
+                        <td class="text-right">
+                            @if (@Model.Merger.CompanyVendors.Count > 0)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkMerge allcheck" id="CompanyVendors'@Model.Merger.ID'" type="checkbox" data-chkfor="merger" name="CompanyVendors" value="@Model.Merger.CompanyVendors" />
+                    <label class="custom-control-label w-100" for="CompanyVendors'@Model.Merger.ID'">
+
+                        @{ int vendorCountMer = Model.Merger.CompanyVendors.Count;
+                            if (vendorCountMer > 0)
+                            {
+                                string firstVendor = Model.Merger.CompanyVendors.FirstOrDefault().Vendor.VendorName;
+                                if (vendorCountMer > 1)
+                                {
+                                    string vendorList = "";
+                                    var c = Model.Merger.CompanyVendors.ToList();
+                                    for (int i = 1; i < vendorCountMer; i++)
+                                    {
+                                        vendorList += c[i].Vendor.VendorName + " <br />";
+                                    }
+                <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.Merger.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.Merger.ID)">
+                    @firstVendor... <span class="badge badge-info">@vendorCountMer</span>
+                </a>
+                                        <div class="collapse" id="collapseSum@(Model.Merger.ID)">
+                                            @Html.Raw(vendorList)
+                                        </div> }
+                                    else
+                                    {
+                @firstVendor }
+        } }
+                    </label>
+                </div>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="">
+                                <label class="custom-control text-left">@Html.DisplayNameFor(model => model.Primary.CompanyCustomers)</label>
+                            </div>
+                        </th>
+                        <td>
+                            @if (@Model.Primary.CompanyCustomers.Count > 0)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkPrimary allcheck" id="CompanyCustomers'@Model.Primary.ID'" type="checkbox" data-chkfor="primary" name="CompanyCustomers" value="@Model.Primary.CompanyCustomers" />
+                    <label class="custom-control-label w-100" for="CompanyCustomers'@Model.Primary.ID'">
+
+                        @{ int customerCount = Model.Primary.CompanyCustomers.Count;
+                            if (customerCount > 0)
+                            {
+                                string firstCustomer = Model.Primary.CompanyCustomers.FirstOrDefault().Customer.CustomerName;
+                                if (customerCount > 1)
+                                {
+                                    string customerList = "";
+                                    var c = Model.Primary.CompanyCustomers.ToList();
+                                    for (int i = 1; i < customerCount; i++)
+                                    {
+                                        customerList += c[i].Customer.CustomerName + " <br />";
+                                    }
+                <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.Primary.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.Primary.ID)">
+                    @firstCustomer... <span class="badge badge-info">@customerCount</span>
+                </a>
+                                        <div class="collapse" id="collapseSum@(Model.Primary.ID)">
+                                            @Html.Raw(customerList)
+                                        </div> }
+                                    else
+                                    {
+                @firstCustomer }
+        } }
+                    </label>
+                </div>}
+                        </td>
+                        <td class="text-right">
+                            @if (@Model.Merger.CompanyCustomers.Count > 0)
+                            {
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input chkMerge allcheck" type="checkbox" id="CompanyCustomers'@Model.Merger.ID'" data-chkfor="merger" name="CompanyCustomers" value="@Model.Merger.CompanyCustomers" />
+                    <label class="custom-control-label w-100" for="CompanyCustomers'@Model.Merger.ID'">
+
+                        @{ int customerCountMer = Model.Merger.CompanyCustomers.Count;
+                            if (customerCountMer > 0)
+                            {
+                                string firstCustomer = Model.Merger.CompanyCustomers.FirstOrDefault().Customer.CustomerName;
+                                if (customerCountMer > 1)
+                                {
+                                    string customerList = "";
+                                    var c = Model.Merger.CompanyCustomers.ToList();
+                                    for (int i = 1; i < customerCountMer; i++)
+                                    {
+                                        customerList += c[i].Customer.CustomerName + " <br />";
+                                    }
+                <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.Merger.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.Merger.ID)">
+                    @firstCustomer... <span class="badge badge-info">@customerCountMer</span>
+                </a>
+                                        <div class="collapse" id="collapseSum@(Model.Merger.ID)">
+                                            @Html.Raw(customerList)
+                                        </div> }
+                                    else
+                                    {
+                @firstCustomer }
+        } }
+                    </label>
+                </div>}
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <colgroup>
+                    <col span="1" />
+                    <col span="1" />
+                    <col span="1" />
+                    @*<col span="1" />*@
+                </colgroup>
+                <tr>
+                    <th>
+                        <label class="form-control-plaintext"> Full Name</label>
+
+                    </th>
+                    <th>
+                        <label class="form-control-plaintext"> Email</label>
+
+                    </th>
+                    <th>
+                        <label class="form-control-plaintext"> Job Title</label>
+
+                    </th>
+
+
+                </tr>
+                @{List<int> contactIDS = new List<int>();}
+                @foreach (var item in Model.Primary.Contacts)
+                {
+                    contactIDS.Add(item.ID);
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+    </tr>}
+                @foreach (var item in Model.Merger.Contacts)
+                {
+                    if (!contactIDS.Contains(item.ID))
+                    {
+    <tr>
+        <td>
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input  allcheck" id="fname'@item.ID'" type="checkbox" data-chkfor="@item.ID" name="Contacts" value="@item.ID" />
+                <label class="custom-control-label w-100" for="fname'@item.ID'">
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </label>
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+
+
+    </tr>
+}
+}
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+

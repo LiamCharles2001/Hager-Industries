@@ -1,0 +1,38 @@
+﻿@model HagerIndustries.Models.Country
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Country</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="countryName" class="control-label"></label>
+                <input asp-for="countryName" class="form-control" />
+                <span asp-validation-for="countryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="countryPostalFormat" class="control-label"></label>
+                <input asp-for="countryPostalFormat" class="form-control" />
+                <span asp-validation-for="countryPostalFormat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Lookups" asp-route-Tab="CountriesTab">Back to Lookup List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

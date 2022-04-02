@@ -1,0 +1,21 @@
+﻿@model HagerIndustries.Models.Country
+<form asp-action="Create" asp-controller="Countries" id="createBillingCountryForm">
+    <div class="row">
+        <div class="col-md-12">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="countryName" class="control-label"></label>
+                <input asp-for="countryName" class="form-control" />
+                <span asp-validation-for="countryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="countryPostalFormat" class="control-label"></label>
+                <input asp-for="countryPostalFormat" class="form-control" />
+                <span asp-validation-for="countryPostalFormat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" id="submitCreateBillingCountry" class="btn btn-outline-dark" />
+            </div>
+        </div>
+    </div>
+</form>

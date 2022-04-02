@@ -1,0 +1,161 @@
+﻿@model HagerIndustries.Models.Contact
+
+@{
+    ViewData["Title"] = "Edit Contact";
+}
+
+<div class="modal fade" id="addCompanyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Company</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @{ var b = new HagerIndustries.Models.Company();
+                    <partial name="_CompanyCreate" model="b" /> }
+            </div>
+        </div>
+    </div>
+</div>
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="container-fluid bg-white">
+        <div class="row mt-1 p-1">
+            <div class="col-md-12 bg-light mt-1 p-1">
+                <h3 class="text-center">
+                    Editing: @Html.DisplayFor(model => model.FullName)
+                </h3>
+            </div>
+        </div>
+        <div class="row mt-1 p-1">
+            <div class="col-md-12 bg-light mt-1 p-1">
+                <h4 class="text-center">Basic</h4>
+                <input type="hidden" asp-for="ID" />
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="JobTitle" class="control-label"></label>
+                    <input asp-for="JobTitle" class="form-control" />
+                    <span asp-validation-for="JobTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CellPhone" class="control-label"></label>
+                    <input asp-for="CellPhone" class="form-control" />
+                    <span asp-validation-for="CellPhone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="WorkPhone" class="control-label"></label>
+                    <input asp-for="WorkPhone" class="form-control" />
+                    <span asp-validation-for="WorkPhone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Note" class="control-label"></label>
+                    <textarea asp-for="Note" class="form-control"></textarea>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1 p-1">
+            <div class="col-md-6 mt-1 p-1">
+                <div class="col-md-12 bg-light p-3">
+                    <h4 class="text-center">Accounting</h4>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyID" class="control-label"></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" id="nowAddCompany" data-toggle="modal" data-target="#addCompanyModal" type="button"><strong>+</strong></button>
+                            </div>
+                            <select asp-for="CompanyID" class="form-control" asp-items="ViewBag.CompanyID"></select>
+                        </div>
+                        <span asp-validation-for="CompanyID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-1 p-1">
+                <div class="col-md-12 bg-light p-3">
+                    <h4 class="text-center">Contact Categories</h4>
+                    <div class="form-group">
+                        <div class="col-md-offset-1">
+                            <div class="text-center">
+                                <table>
+                                    <tr>
+                                        @{
+                                            int cnt = 0;
+                                            List<HagerIndustries.ViewModels.OptionVM> checkboxes = ViewBag.CategoriesOptions;
+                                            foreach (var checkbox in checkboxes)
+                                            {
+                                                if (cnt++ % 2 == 0)
+                                                {
+                                                @:</tr><tr>
+                                                }
+                                                @:<td>
+                                                    <input type="checkbox"
+                                                           name="selectedOptions"
+                                                           value="@checkbox.ID"
+                                                           @(Html.Raw(checkbox.Assigned ? "checked=\"checked\"" : "")) &nbsp; />
+                                                    <strong> @checkbox.DisplayText</strong> @:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                @:</td>
+                                            }
+                                        @:</tr>
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-1 p-1 bg-light">
+                <a href='@ViewData["returnURL"]' class="btn btn-outline-primary">Back to List of Contacts</a>&nbsp;
+                <input type="submit" value="Save" class="btn btn-primary" id="btnSubmit" />
+            </div>
+        </div>
+    </form>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script src="~/js/refreshDDL.js"></script>
+        <script type="text/javascript">
+            $('#submitCreateCompany').click(function (event) {
+                event.preventDefault();
+                var form = $('#createCompanyForm');
+                if (form.valid()) {
+                    $.ajax({
+                        type: "POST",
+                        url: form.attr('action'),
+                        data: form.serialize(),
+                        success: function () {
+                            $('#addCompanyModal').modal('hide');
+                        },
+                        error: function () {
+                            alert("Create Failed.  There was a problem adding the record.");
+                        }
+                    });
+                }
+                return false;
+            });
+            $('#addCompanyModal').on('hide.bs.modal', function () {
+                $('#createCompanyForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+                refreshDDL('CompanyID', 'Contacts/GetCompanies', false, '');
+            });
+        </script>
+    }

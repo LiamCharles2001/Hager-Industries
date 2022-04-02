@@ -1,0 +1,255 @@
+﻿/* LF */
+
+::-moz-selection {
+    color: #FFF;
+    background: var(--hager-red);
+}
+
+::selection {
+    color: #FFF;
+    background: var(--hager-red);
+}
+
+:root {
+    --hager-red: #910029;
+    --dark-red: #721c24;
+}
+
+body {
+    font-family: 'Montserrat', 'Helvetica', 'Arial', sans-serif;
+}
+
+header {
+    display: flex;
+    height: 80px;
+
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: solid 1px #EEE;
+}
+
+header > div > a {
+    height: 100%;
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
+}
+
+.form-inline > a {
+    padding: 0;
+}
+
+.form-inline > a:hover {
+    text-decoration: underline;
+}
+
+#hager-logo,
+.bi-person-circle {
+    height: 100%;
+}
+
+#hager-logo {
+    margin-left: 1em;
+}
+
+#nav-toggle {
+    border: none;
+    font-size: 2em;
+    background: none;
+    fill: var(--hager-red);
+}
+
+header > div:first-child {
+    height: 100%;
+}
+
+header > div {
+    display: flex;
+    align-items: center;
+}
+
+.bi-person-circle {
+    vertical-align: top;
+    font-size: 32px;
+    margin: 0 .5em;
+}
+
+.hidden {
+    display: none;
+}
+
+.nav-hidden {
+    display: none;
+    animation: slideOut 1s ease-in;
+}
+
+aside {
+    width: 280px;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+aside, .container {
+    height: calc(100vh - 80px); /* account for header -- no more footer. */
+    padding: 1em 1em 0 1em;
+}
+
+.aside::-webkit-scrollbar {
+    display: none;
+}
+
+#nav ul li a,
+.nav-header span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#body-container {
+    display: flex;
+}
+
+#header-accounts-area {
+    display: flex;
+    align-items: center;
+}
+
+#header-accounts-area > span {
+    margin: 0 .5em;
+    user-select: none;
+}
+
+#header-accounts-area > a {
+    padding: 0 .5em;
+}
+
+#header-accounts-area > a:hover {
+    text-decoration: underline;
+}
+
+#header-accounts-area button {
+    padding: 0;
+}
+
+#header-accounts-area button:hover {
+    text-decoration: underline; 
+}
+
+.bi-person-circle:hover {
+    color: #AAA;
+}
+
+nav {
+    font-weight: 500;
+}
+
+nav .nav-item > ul:not(.collapsed_custom) {
+    margin-bottom: 1em;
+}
+
+nav > ul {
+    padding: 0;
+    list-style: none;
+}
+
+nav .nav-link {
+    padding: .25em 0;
+    color: #222;
+}
+
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-item > ul {
+    padding-left: 2em;
+    list-style: none;
+}
+
+.nav-item > ul:not(#nav-admin-list) > li:not(:first-child) {
+    list-style-image: url('../assets/img/svg/funnel.svg');
+    margin-left: 1.5em;
+    padding-left: .3em;
+}
+
+nav a:hover, a:focus {
+    text-decoration: underline !important;
+    color: inherit;
+}
+
+.container {
+    max-width: 100%;
+    flex: 1;
+    overflow-x: auto;
+}
+
+.nav-header:hover {
+    cursor: pointer;
+}
+
+.collapsed_custom {
+    display: none;
+}
+
+.hager-footer {
+    font-size: 0.8em;
+    color: grey;
+    padding: 1em 0;
+}
+
+.hager-footer hr {
+    margin: 1em 0;
+}
+
+.hager-footer p {
+    margin: 0;
+}
+
+#hager-logo:hover {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 650px) {
+    header {
+        height: 100px;
+    }
+
+    header > div:first-child {
+        text-align: center;
+    }
+
+    #header-accounts-area > form {
+        flex-direction: column;
+    }
+
+    #header-accounts-area > form > a:first-child {
+        display: none;
+    }
+
+    aside, .container {
+        height: calc(100vh - 100px);
+        padding: 1em 1em 0 1em;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    header > div > button > svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    #hager-logo {
+        width: 80%;
+        height: auto;
+    }
+
+    #header-accounts-area i {
+        font-size: 1.5em;
+    }
+}

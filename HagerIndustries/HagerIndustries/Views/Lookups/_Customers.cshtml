@@ -1,0 +1,57 @@
+﻿<br />
+@{ var items = (List<Customer>)ViewBag.LookupSort; }
+<div class="card mb-sm-3" style="min-width: 18rem;">
+    <h4 class="card-header" id="Currencies">Customers</h4>
+    <div class="card-body">
+        @*@Html.DropDownList("ContractorsID", null, htmlAttributes: new { @size = 6, @class = "form-control" })*@
+        <input type="hidden" id="isSortable" value="true" />
+
+        @using (Html.BeginForm("UpdateCustomers", "Lookups", FormMethod.Post))
+        {
+            <ul id="ListOf_Customers" class="list-group">
+                @foreach (Customer item in items)
+                {
+                    <li type="button" id="@item.ID"
+                        class="list-group-item list-group-item-action "
+                        aria-current="true">
+                        <span></span>
+                        @item.CustomerName
+                        <input type="hidden" name="LocationId" value="@item.ID" />
+                    </li>
+                }
+            </ul>
+
+            <br />
+            <input type="submit" value="Update Preference" />}
+    </div>
+    <div class="card-footer">
+        <a asp-controller="Customers" asp-action="Create">Create</a> |
+        <a asp-controller="Customers" asp-action="Edit" class="linkClick">Edit</a> |
+        <a asp-controller="Customers" asp-action="Delete" class="linkClick">Delete</a>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('.list-group li').click(function (e) {
+            e.preventDefault()
+            $that = $(this);
+
+            $that.parent().find('li').removeClass('active');
+            $that.addClass('active');
+        });
+        $("#ListOf_Customers").sortable({
+            items: 'li',
+            cursor: 'pointer',
+            axis: 'y',
+            dropOnEmpty: false,
+            start: function (e, ui) {
+                ui.item.addClass("selected");
+            },
+            stop: function (e, ui) {
+                ui.item.removeClass("selected");
+            },
+            receive: function (e, ui) {
+                $(this).find("li").append(ui.item);
+            }
+        });
+    });</script>

@@ -1,0 +1,163 @@
+﻿@{
+    ViewData["Title"] = "Lookup Values";
+}
+
+<h2>Lookup Values</h2>
+
+<div>
+    <!-- Nav tabs -->
+    <input type="hidden" id="hdnTab" value="@ViewData["Tab"]" />
+    <ul class="nav nav-tabs" id="myTabs" role="tablist">
+        <li class="nav-item">
+            <a href="#DefaultPanel" aria-controls="DefaultTab" role="tab" class="nav-link active" name="DefaultTab" data-toggle="tab" aria-selected="false">Information</a>
+        </li>
+        <li class="nav-item">
+            <a href="#CountriesPanel" id="CountriesTab" aria-controls="CountriesTab" role="tab" class="nav-link" name="CountriesPanel" data-toggle="tab" aria-selected="false">Countries</a>
+        </li>
+        <li class="nav-item">
+            <a href="#ProvincesPanel" id="ProvincesTab" aria-controls="ProvincesTab" role="tab" class="nav-link" name="ProvincesPanel" data-toggle="tab" aria-selected="false">Provinces</a>
+        </li>
+        <li class="nav-item">
+            <a href="#CitiesPanel" id="CitiesTab" aria-controls="CitiesTab" role="tab" class="nav-link" name="CitiesPanel" data-toggle="tab" aria-selected="false">Cities</a>
+        </li>
+        <li class="nav-item">
+            <a href="#SkillsPanel" id="SkillsTab" aria-controls="SkillsTab" role="tab" class="nav-link" name="SkillsPanel" data-toggle="tab" aria-selected="false">Skills</a>
+        </li>
+        <li class="nav-item">
+            <a href="#PositionsPanel" id="PositionsTab" aria-controls="PositionsTab" role="tab" class="nav-link" name="PositionsPanel" data-toggle="tab" aria-selected="false">Positions</a>
+        </li>
+        <li class="nav-item">
+            <a href="#CurrenciesPanel" id="CurrenciesTab" aria-controls="CurrenciesTab" role="tab" class="nav-link" name="CurrenciesPanel" data-toggle="tab" aria-selected="false">Currencies</a>
+        </li>
+        <li class="nav-item">
+            <a href="#BillingTermsPanel" id="BillingTermsTab" aria-controls="BillingTermsTab" role="tab" class="nav-link" name="BillingTermsPanel" data-toggle="tab" aria-selected="false">Billing Terms</a>
+        </li>
+        <li class="nav-item">
+            <a href="#ContractorsPanel" id="ContractorsTab" aria-controls="ContractorsTab" role="tab" class="nav-link" name="ContractorsPanel" data-toggle="tab" aria-selected="false">Contractors</a>
+        </li>
+        <li class="nav-item">
+            <a href="#VendorsPanel" id="VendorsTab" aria-controls="VendorsTab" role="tab" class="nav-link" name="VendorsPanel" data-toggle="tab" aria-selected="false">Vendors</a>
+        </li>
+        <li class="nav-item">
+            <a href="#CustomersPanel" id="CustomersTab" aria-controls="CustomersTab" role="tab" class="nav-link" name="CustomersPanel" data-toggle="tab" aria-selected="false">Customers</a>
+        </li>
+        <li class="nav-item">
+            <a href="#CategoriesPanel" id="CategoriesTab" aria-controls="CategoriesTab" role="tab" class="nav-link" name="CategoriesPanel" data-toggle="tab" aria-selected="false">Contact Categories</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div role="tabpanel" class="tab-pane fade ml-3 show active" id="DefaultPanel">
+            <h4>
+                Select the lookup value to configure from the tabs.
+            </h4>
+        </div>
+        <div role="tabpanel" class="tab-pane fade ml-3" id="CountriesPanel" aria-labelledby="Countries-Panel">
+            <br />
+        </div>
+        <div role="tabpanel" class="tab-pane fade ml-3" id="ProvincesPanel" aria-labelledby="Provinces-Panel">
+            <br />
+        </div>
+        <div role="tabpanel" class="tab-pane fade ml-3" id="CitiesPanel" aria-labelledby="Cities-Panel">
+            <br />
+        </div>
+        <div role="tabpanel" class="tab-pane fade ml-3" id="SkillsPanel" aria-labelledby="Skills-Panel">
+            <br />
+        </div>
+        <div role="tabpanel" class="tab-pane fade ml-3" id="PositionsPanel" aria-labelledby="Positions-Panel">
+            <br />
+        </div>
+        <div role="tabpanel" class="tab-pane fade ml-3" id="CurrenciesPanel" aria-labelledby="Currencies-Panel">
+            <br />
+        </div>
+        <div role="tabpanel" class="tab-pane fade ml-3" id="BillingTermsPanel" aria-labelledby="BillingTerms-Panel">
+            <br />
+        </div>
+        <div role="tabpanel" class="tab-pane fade ml-3" id="ContractorsPanel" aria-labelledby="Contractors-Panel">
+            <br />
+        </div>
+        <div role="tabpanel" class="tab-pane fade ml-3" id="VendorsPanel" aria-labelledby="Vendors-Panel">
+            <br />
+        </div>
+        <div role="tabpanel" class="tab-pane fade ml-3" id="CustomersPanel" aria-labelledby="Customers-Panel">
+            <br />
+        </div>
+        <div role="tabpanel" class="tab-pane fade ml-3" id="CategoriesPanel" aria-labelledby="Categories-Panel">
+            <br />
+        </div>
+    </div>
+</div>
+<hr />
+<br />
+@section Scripts {
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+
+        function refreshTab(activeTab) {
+            switch (activeTab) {
+                case 'CountriesPanel': $('#CountriesPanel').load('/Lookups/Countries');
+                    break;
+                case 'ProvincesPanel': $('#ProvincesPanel').load('/Lookups/Provinces');
+                    break;
+                case 'CitiesPanel': $('#CitiesPanel').load('/Lookups/Cities');
+                    break;
+                case 'SkillsPanel': $('#SkillsPanel').load('/Lookups/Skills');
+                    break;
+                case 'PositionsPanel': $('#PositionsPanel').load('/Lookups/Positions');
+                    break;
+                case 'CurrenciesPanel': $('#CurrenciesPanel').load('/Lookups/Currencies');
+                    break;
+                case 'BillingTermsPanel': $('#BillingTermsPanel').load('/Lookups/BillingTerms');
+                    break;
+                case 'ContractorsPanel': $('#ContractorsPanel').load('/Lookups/Contractors');
+                    break;
+                case 'VendorsPanel': $('#VendorsPanel').load('/Lookups/Vendors');
+                    break;
+                case 'CustomersPanel': $('#CustomersPanel').load('/Lookups/Customers');
+                    break;
+                case 'CategoriesPanel': $('#CategoriesPanel').load('/Lookups/Categories');
+                    break;
+                default: break;
+            };
+            return;
+        };
+        $('.nav-link').click( function () {
+            var activeTab = $(this).attr("name");
+            refreshTab(activeTab);
+        });
+        $(".tab-content").on("click",".linkClick", function (event) {
+            event.preventDefault();
+            debugger
+            var address = $(this).attr("href");
+            var lookup = address.split("/")[1];
+            var id = null;
+            // add name of loopup with sorting
+
+            var sorted = ['Skills', 'Positions', 'Currencies', 'BillingTerms', 'Contractors', 'Vendors', 'Customers', 'Categories']
+            if ($.inArray(lookup, sorted) !== -1)
+             {
+                id = $('#ListOf_' + lookup + ' li.active').attr('id');
+            }
+            else
+                id = $("#" + lookup + "ID").val();
+            var caption = $("#" + lookup).html();
+            console.log(id)
+            if (id == null || id == undefined) {
+                alert("Error: no value selected from the " + caption + " list!");
+            } else {
+                window.location.href = address + "/" + id;
+            }
+        });
+        $(function () {
+            setTimeout(function () {
+                if ($("#@ViewData["Tab"]") != undefined)
+                        $("#@ViewData["Tab"]")[0].click();
+            }, 10);
+        });
+
+    </script>
+}

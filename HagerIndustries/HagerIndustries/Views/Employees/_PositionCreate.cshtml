@@ -1,0 +1,16 @@
+﻿@model HagerIndustries.Models.Position
+<form asp-action="Create" asp-controller="Positions" id="createPositionForm">
+    <div class="row">
+        <div class="col-md-12">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PosName" class="control-label"></label>
+                <input asp-for="PosName" class="form-control" />
+                <span asp-validation-for="PosName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" id="submitCreatePosition" class="btn btn-outline-dark" />
+            </div>
+        </div>
+    </div>
+</form>

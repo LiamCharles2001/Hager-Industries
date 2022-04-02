@@ -1,0 +1,143 @@
+﻿@model HagerIndustries.Models.Contact
+
+@{ ViewData["Title"] = "Contact Details"; }
+
+<input type="hidden" asp-for="ID" />
+
+<div class="dtwrapper">
+
+</div>
+
+<div class="container-fluid bg-white">
+    <div class="row mt-1 p-1">
+        <div class="col-md-12 bg-light mt-1 p-1">
+            <h3 class="text-center">
+                Details: @Html.DisplayFor(model => model.FullName)
+            </h3>
+        </div>
+    </div>
+    <div class="row mt-1 p-1">
+        <div class="col-md-12 mt-1 p-1">
+            <div class="col-md-12 bg-light mt-1 p-1">
+                <h4 class="text-center">Basic</h4>
+                <dl>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </dt>
+                    <dd class="">
+                        &nbsp;: @Html.DisplayFor(model => model.FirstName)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.LastName)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.JobTitle)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.JobTitle)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.CellPhone)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.CellPhone)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.WorkPhone)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.WorkPhone)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.IsActive)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.Note)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.Note)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="col-md-6 mt-1 p-1">
+            <div class="col-md-12 bg-light p-1">
+                <h4 class="text-center">Company</h4>
+
+
+                <dl>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.Company)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.Company.CompName)
+                    </dd>
+                    <dd>
+                        <a asp-controller="Companies" asp-action="Details" asp-route-id="@Model.Company.ID">
+                            <span class="btn btn-primary">View Company Details</span>
+                        </a>
+                    </dd>
+                </dl>
+                
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-1 p-1">
+            <div class="col-md-12 bg-light p-1">
+                <h4 class="text-center">Categories</h4>
+                <dl>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.ContactCategories)
+                    </dt>
+                    <dd>
+                        &nbsp;: @{ int contactCount = Model.ContactCategories.Count;
+                            if (contactCount > 0)
+                            {
+                                string firstContact = Model.ContactCategories.FirstOrDefault().Category.Name;
+                                if (contactCount > 1)
+                                {
+                                    string contactList = "";
+                                    var c = Model.ContactCategories.ToList();
+                                    for (int i = 1; i < contactCount; i++)
+                                    {
+                                        contactList += c[i].Category.Name + " <br />";
+                                    }
+                                    <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.ID)">
+                                        @firstContact... <span class="badge badge-info">@contactCount</span>
+                                    </a>
+                                    <div class="collapse" id="collapseSum@(Model.ID)">
+                                        @Html.Raw(contactList)
+                                    </div> }
+                                else
+                                {
+                                    @firstContact }
+                            } }
+                        @*For help with Bootstrap Collapse see: https://getbootstrap.com/docs/4.3/components/collapse/*@
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+    </div>
+    <div class="row mt-1 p-1 bg-light">
+        <a href='@ViewData["returnURL"]' class="btn btn-outline-primary">Back to List of Contacts</a>&nbsp;
+        @if (User.IsInRole("Admin") || User.IsInRole("Supervisor"))
+        {
+            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.ID">Edit</a>
+        }
+    </div>
+</div>
+
+

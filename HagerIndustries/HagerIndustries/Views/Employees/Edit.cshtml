@@ -1,0 +1,310 @@
+﻿@model HagerIndustries.Models.Employee
+
+@{ ViewData["Title"] = "Edit Employee"; }
+
+<!-- Modal-->
+<div class="modal fade" id="addPositionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Position</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @{ var b = new HagerIndustries.Models.Position();
+        <partial name="_PositionCreate" model="b" /> }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addCountryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Country</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @{ var d = new HagerIndustries.Models.Country();
+        <partial name="_CountryCreate" model="d" /> }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addProvinceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Province</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @{ var c = new HagerIndustries.Models.Province();
+        <partial name="_ProvinceCreate" model="c" /> }
+            </div>
+        </div>
+    </div>
+</div>
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @*<input type="hidden" asp-for="ID" />
+    <input type="hidden" name="returnURL" value="@ViewData["returnURL"]" />*@
+<div class="container-fluid bg-white">
+    <div class="row mt-1 p-1">
+        <div class="col-md-12 bg-light mt-1 p-1">
+            <h3 class="text-center">
+                Editing: @Html.DisplayFor(model => model.FullName)
+            </h3>
+        </div>
+    </div>
+    <div class="row mt-1 p-1">
+        <div class="col-md-12 mt-1 p-1">
+            <div class="col-md-12 bg-light mt-1 p-1">
+                <h4 class="text-center">Basic</h4>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddressOne" class="control-label"></label>
+                    <input asp-for="AddressOne" class="form-control" />
+                    <span asp-validation-for="AddressOne" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddressTwo" class="control-label"></label>
+                    <input asp-for="AddressTwo" class="form-control" />
+                    <span asp-validation-for="AddressTwo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Postal" class="control-label"></label>
+                    <input asp-for="Postal" class="form-control" />
+                    <span asp-validation-for="Postal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CellPhone" class="control-label"></label>
+                    <input asp-for="CellPhone" class="form-control" />
+                    <span asp-validation-for="CellPhone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HomePhone" class="control-label"></label>
+                    <input asp-for="HomePhone" class="form-control" />
+                    <span asp-validation-for="HomePhone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DOB" class="control-label"></label>
+                    <input asp-for="DOB" class="form-control" />
+                    <span asp-validation-for="DOB" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmergencyContactName" class="control-label"></label>
+                    <input asp-for="EmergencyContactName" class="form-control" />
+                    <span asp-validation-for="EmergencyContactName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmergencyContactPhone" class="control-label"></label>
+                    <input asp-for="EmergencyContactPhone" class="form-control" />
+                    <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-1 p-1">
+            <div class="col-md-12 bg-light p-1">
+                <h4 class="text-center">Employee Details</h4>
+                <div class="form-group">
+                    <label asp-for="DateJoined" class="control-label"></label>
+                    <input asp-for="DateJoined" class="form-control" />
+                    <span asp-validation-for="DateJoined" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Wage" class="control-label"></label>
+                    <input asp-for="Wage" class="form-control" />
+                    <span asp-validation-for="Wage" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Expense" class="control-label"></label>
+                    <input asp-for="Expense" class="form-control" />
+                    <span asp-validation-for="Expense" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="KeyFobNumber" class="control-label"></label>
+                    <input asp-for="KeyFobNumber" class="form-control" />
+                    <span asp-validation-for="KeyFobNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Note" class="control-label"></label>
+                    <textarea asp-for="Note" class="form-control"></textarea>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-1 p-1">
+            <div class="col-md-12 bg-light p-1">
+                <h4 class="text-center">General</h4>
+                <div class="form-group form-check check-group">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                    </label>
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsUser" /> @Html.DisplayNameFor(model => model.IsUser)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PositionID" class="control-label"></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" id="nowAddPosition" data-toggle="modal" data-target="#addPositionModal" type="button"><strong>+</strong></button>
+                        </div>
+                        <select asp-for="PositionID" class="form-control" asp-items="ViewBag.PositionID"></select>
+                    </div>
+                    <span asp-validation-for="PositionID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmploymentID" class="control-label"></label>
+                    <select asp-for="EmploymentID" class="form-control" asp-items="ViewBag.EmploymentID"></select>
+                    <span asp-validation-for="EmploymentID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CountryID" class="control-label"></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" id="nowAddCountry" data-toggle="modal" data-target="#addCountryModal" type="button"><strong>+</strong></button>
+                        </div>
+                        <select asp-for="CountryID" class="form-control" asp-items="ViewBag.CountryID">
+                            <option value="">--Select Country--</option>
+
+                        </select>
+                    </div>
+                    <span asp-validation-for="CountryID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProvinceID" class="control-label"></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" id="nowAddProvince" data-toggle="modal" data-target="#addProvinceModal" type="button"><strong>+</strong></button>
+                        </div>
+                        <select asp-for="ProvinceID" class="form-control" asp-items="ViewBag.ProvinceID">
+                            <option value="">--Select Province--</option>
+
+                        </select>
+                    </div>
+                    <span asp-validation-for="ProvinceID" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12  ">
+            <div class="row">
+                <div class="col-md-12 bg-light p-1">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label"><strong> Employee Skills </strong></label> <button type="button" id="btnRight" class="btn btn-danger btn-sm">
+                                <strong>-</strong>
+                            </button>
+                            @Html.ListBox("selectedOptions", (MultiSelectList)ViewBag.selOpts, new { @size = 10, @class = "form-control" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label"> Choose Skills </label> <button type="button" id="btnLeft" class="btn btn-success btn-sm">
+                                <strong>+</strong>
+                            </button>
+                            @Html.ListBox("availOptions", (MultiSelectList)ViewBag.availOpts, new { @size = 10, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-1 p-1 bg-light">
+        <a href='@ViewData["returnURL"]' class="btn btn-outline-primary">Back to List of Employees</a>&nbsp;
+        <input type="submit" value="Save" class="btn btn-primary" id="btnSubmit" />
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/multiselect.js"></script>
+    <script src="~/js/refreshDDL.js"></script>
+    <script type="text/javascript">
+        $('#submitCreatePosition').click(function (event) {
+            event.preventDefault();
+            var form = $('#createPositionForm');
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#addPositionModal').modal('hide');
+                    },
+                    error: function () {
+                        alert("Create Failed.  There was a problem adding the record.");
+                    }
+                });
+            }
+            return false;
+        });
+        $('#addPositionModal').on('hide.bs.modal', function () {
+            $('#createPositionForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+            refreshDDL('PositionID', 'Employees/GetPositions', false, '');
+        });</script>
+    <script type="text/javascript">
+        $('#submitCreateCountry').click(function (event) {
+            event.preventDefault();
+            var form = $('#createCountryForm');
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#addCountryModal').modal('hide');
+                    },
+                    error: function () {
+                        alert("Create Failed.  There was a problem adding the record.");
+                    }
+                });
+            }
+            return false;
+        });
+        $('#addCountryModal').on('hide.bs.modal', function () {
+            $('#createCountryForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+            refreshDDL('CountryID', 'Employees/GetCountries', false, '');
+        });</script>
+
+    <script type="text/javascript">
+        $('#submitCreateProvince').click(function (event) {
+            event.preventDefault();
+            var form = $('#createProvinceForm');
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#addProvinceModal').modal('hide');
+                    },
+                    error: function () {
+                        alert("Create Failed.  There was a problem adding the record.");
+                    }
+                });
+            }
+            return false;
+        });
+        $('#addProvinceModal').on('hide.bs.modal', function () {
+            $('#createProvinceForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+            loadProvince(false);
+            // refreshDDL('ProvinceID', 'Employees/GetProvinces', false, '');
+        });</script>
+
+}

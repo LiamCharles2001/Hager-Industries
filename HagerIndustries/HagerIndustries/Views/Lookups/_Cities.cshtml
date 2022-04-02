@@ -1,0 +1,34 @@
+﻿<br />
+<div class="card mb-sm-3" style="min-width: 18rem;">
+    <h4 class="card-header" id="Cities">Cities</h4>
+    <div class="card-body">
+        <div class="form-group">
+            <label class="control-label"></label>
+            <select id="CountryIDList" name="CountryID" class="form-control" asp-items="ViewBag.CountryID">
+                <option value="">--Select Country--</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label"></label>
+            <select id="ProvinceID" name="ProvinceID" class="form-control" asp-items="ViewBag.ProvinceID">
+                <option value="">--Select Province--</option>
+
+            </select>
+        </div>
+        @Html.DropDownList("CitiesID", null, htmlAttributes: new { @size = 12, @class = "form-control" })
+    </div>
+    <div class="card-footer">
+        <a asp-controller="Cities" asp-action="Create">Create</a> |
+        <a asp-controller="Cities" asp-action="Edit" class="linkClick">Edit</a> |
+        <a asp-controller="Cities" asp-action="Delete" class="linkClick">Delete</a>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#CountryIDList").on("change", function () {
+        loadProvince(true, undefined, $("#CountryIDList").val(), $("#ProvinceID"), true);
+    });
+    $("#ProvinceID").on("change", function () {
+        loadCities(true, undefined, $("#ProvinceID").val(), undefined, false);
+    });
+</script>

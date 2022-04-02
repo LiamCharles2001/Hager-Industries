@@ -1,0 +1,138 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-HagerIndustries-B2899EA2-7493-4E7D-95FC-4DFCCB60BD83</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Databases\**" />
+    <Content Remove="Data\Databases\**" />
+    <EmbeddedResource Remove="Data\Databases\**" />
+    <None Remove="Data\Databases\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mailkit" Version="2.10.1" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Identity\Pages\_ViewStart.cshtml" />
+    <None Include="wwwroot\font-awesome\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\font-awesome\less\animated.less" />
+    <None Include="wwwroot\font-awesome\less\bordered-pulled.less" />
+    <None Include="wwwroot\font-awesome\less\core.less" />
+    <None Include="wwwroot\font-awesome\less\fixed-width.less" />
+    <None Include="wwwroot\font-awesome\less\font-awesome.less" />
+    <None Include="wwwroot\font-awesome\less\icons.less" />
+    <None Include="wwwroot\font-awesome\less\larger.less" />
+    <None Include="wwwroot\font-awesome\less\list.less" />
+    <None Include="wwwroot\font-awesome\less\mixins.less" />
+    <None Include="wwwroot\font-awesome\less\path.less" />
+    <None Include="wwwroot\font-awesome\less\rotated-flipped.less" />
+    <None Include="wwwroot\font-awesome\less\screen-reader.less" />
+    <None Include="wwwroot\font-awesome\less\stacked.less" />
+    <None Include="wwwroot\font-awesome\less\variables.less" />
+    <None Include="wwwroot\font-awesome\scss\font-awesome.scss" />
+    <None Include="wwwroot\font-awesome\scss\_animated.scss" />
+    <None Include="wwwroot\font-awesome\scss\_bordered-pulled.scss" />
+    <None Include="wwwroot\font-awesome\scss\_core.scss" />
+    <None Include="wwwroot\font-awesome\scss\_fixed-width.scss" />
+    <None Include="wwwroot\font-awesome\scss\_icons.scss" />
+    <None Include="wwwroot\font-awesome\scss\_larger.scss" />
+    <None Include="wwwroot\font-awesome\scss\_list.scss" />
+    <None Include="wwwroot\font-awesome\scss\_mixins.scss" />
+    <None Include="wwwroot\font-awesome\scss\_path.scss" />
+    <None Include="wwwroot\font-awesome\scss\_rotated-flipped.scss" />
+    <None Include="wwwroot\font-awesome\scss\_screen-reader.scss" />
+    <None Include="wwwroot\font-awesome\scss\_stacked.scss" />
+    <None Include="wwwroot\font-awesome\scss\_variables.scss" />
+    <None Include="wwwroot\fullcalendar\locales\af.js" />
+    <None Include="wwwroot\fullcalendar\locales\ar-dz.js" />
+    <None Include="wwwroot\fullcalendar\locales\ar-kw.js" />
+    <None Include="wwwroot\fullcalendar\locales\ar-ly.js" />
+    <None Include="wwwroot\fullcalendar\locales\ar-ma.js" />
+    <None Include="wwwroot\fullcalendar\locales\ar-sa.js" />
+    <None Include="wwwroot\fullcalendar\locales\ar-tn.js" />
+    <None Include="wwwroot\fullcalendar\locales\ar.js" />
+    <None Include="wwwroot\fullcalendar\locales\az.js" />
+    <None Include="wwwroot\fullcalendar\locales\bg.js" />
+    <None Include="wwwroot\fullcalendar\locales\bn.js" />
+    <None Include="wwwroot\fullcalendar\locales\bs.js" />
+    <None Include="wwwroot\fullcalendar\locales\ca.js" />
+    <None Include="wwwroot\fullcalendar\locales\cs.js" />
+    <None Include="wwwroot\fullcalendar\locales\cy.js" />
+    <None Include="wwwroot\fullcalendar\locales\da.js" />
+    <None Include="wwwroot\fullcalendar\locales\de-at.js" />
+    <None Include="wwwroot\fullcalendar\locales\de.js" />
+    <None Include="wwwroot\fullcalendar\locales\el.js" />
+    <None Include="wwwroot\fullcalendar\locales\en-au.js" />
+    <None Include="wwwroot\fullcalendar\locales\en-gb.js" />
+    <None Include="wwwroot\fullcalendar\locales\en-nz.js" />
+    <None Include="wwwroot\fullcalendar\locales\eo.js" />
+    <None Include="wwwroot\fullcalendar\locales\es-us.js" />
+    <None Include="wwwroot\fullcalendar\locales\es.js" />
+    <None Include="wwwroot\fullcalendar\locales\et.js" />
+    <None Include="wwwroot\fullcalendar\locales\eu.js" />
+    <None Include="wwwroot\fullcalendar\locales\fa.js" />
+    <None Include="wwwroot\fullcalendar\locales\fi.js" />
+    <None Include="wwwroot\fullcalendar\locales\fr-ca.js" />
+    <None Include="wwwroot\fullcalendar\locales\fr-ch.js" />
+    <None Include="wwwroot\fullcalendar\locales\fr.js" />
+    <None Include="wwwroot\fullcalendar\locales\gl.js" />
+    <None Include="wwwroot\fullcalendar\locales\he.js" />
+    <None Include="wwwroot\fullcalendar\locales\hi.js" />
+    <None Include="wwwroot\fullcalendar\locales\hr.js" />
+    <None Include="wwwroot\fullcalendar\locales\hu.js" />
+    <None Include="wwwroot\fullcalendar\locales\hy-am.js" />
+    <None Include="wwwroot\fullcalendar\locales\id.js" />
+    <None Include="wwwroot\fullcalendar\locales\is.js" />
+    <None Include="wwwroot\fullcalendar\locales\it.js" />
+    <None Include="wwwroot\fullcalendar\locales\ja.js" />
+    <None Include="wwwroot\fullcalendar\locales\ka.js" />
+    <None Include="wwwroot\fullcalendar\locales\kk.js" />
+    <None Include="wwwroot\fullcalendar\locales\ko.js" />
+    <None Include="wwwroot\fullcalendar\locales\lb.js" />
+    <None Include="wwwroot\fullcalendar\locales\lt.js" />
+    <None Include="wwwroot\fullcalendar\locales\lv.js" />
+    <None Include="wwwroot\fullcalendar\locales\mk.js" />
+    <None Include="wwwroot\fullcalendar\locales\ms.js" />
+    <None Include="wwwroot\fullcalendar\locales\nb.js" />
+    <None Include="wwwroot\fullcalendar\locales\ne.js" />
+    <None Include="wwwroot\fullcalendar\locales\nl.js" />
+    <None Include="wwwroot\fullcalendar\locales\nn.js" />
+    <None Include="wwwroot\fullcalendar\locales\pl.js" />
+    <None Include="wwwroot\fullcalendar\locales\pt-br.js" />
+    <None Include="wwwroot\fullcalendar\locales\pt.js" />
+    <None Include="wwwroot\fullcalendar\locales\ro.js" />
+    <None Include="wwwroot\fullcalendar\locales\ru.js" />
+    <None Include="wwwroot\fullcalendar\locales\sk.js" />
+    <None Include="wwwroot\fullcalendar\locales\sl.js" />
+    <None Include="wwwroot\fullcalendar\locales\sq.js" />
+    <None Include="wwwroot\fullcalendar\locales\sr-cyrl.js" />
+    <None Include="wwwroot\fullcalendar\locales\sr.js" />
+    <None Include="wwwroot\fullcalendar\locales\sv.js" />
+    <None Include="wwwroot\fullcalendar\locales\ta-in.js" />
+    <None Include="wwwroot\fullcalendar\locales\th.js" />
+    <None Include="wwwroot\fullcalendar\locales\tr.js" />
+    <None Include="wwwroot\fullcalendar\locales\ug.js" />
+    <None Include="wwwroot\fullcalendar\locales\uk.js" />
+    <None Include="wwwroot\fullcalendar\locales\uz.js" />
+    <None Include="wwwroot\fullcalendar\locales\vi.js" />
+    <None Include="wwwroot\fullcalendar\locales\zh-cn.js" />
+    <None Include="wwwroot\fullcalendar\locales\zh-tw.js" />
+  </ItemGroup>
+
+</Project>

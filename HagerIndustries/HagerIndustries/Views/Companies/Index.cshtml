@@ -1,0 +1,377 @@
+﻿@model IEnumerable<HagerIndustries.Models.Company>
+
+@{
+    ViewData["Title"] = "Companies";
+}
+
+<h1>Companies</h1>
+
+<p>
+    @if (User.IsInRole("Admin") || User.IsInRole("Supervisor"))
+    {
+        <a asp-action="Create">Create New</a>
+    }
+</p>
+<form asp-action="Index" method="get">
+    <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
+    <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
+    <input type="hidden" name="showInactive" value="@ViewData["showInactive"]" />
+    <div class="form-horizontal">
+        <button class="btn btn-outline-primary @(ViewData["Filtering"])" type="button" data-toggle="collapse" id="filterToggle" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+            Filter/Search
+        </button>
+        <div class="collapse" id="collapseFilter">
+            <div class="card card-body bg-light">
+                <div class="d-block d-lg-none">
+                    <div class="form-group">
+                        <label class="control-label">Sort By:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" class="" value="desc"
+                                           @((ViewData["sortDirection"].ToString() != "asc" ? "checked=\"checked\"" : ""))
+                                           name="sortDirectionCheck" />&nbsp;&nbsp;Descending
+                                </div>
+
+                                @*<div class="input-group-text">
+                                    <input type="checkbox" class="" value="dontshow"
+                                    @((ViewData["showInactive"].ToString() != "show" ? "checked=\"checked\"" : ""))
+                                    name="showInactiveCheck" />&nbsp;&nbsp;
+                                    </div>*@
+
+                            </div>
+                            <select name="sortFieldID" class="form-control" asp-items="ViewBag.sortFieldID"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @*<div class="form-group col-md-4">
+                        <label class="control-label">Select by ---:</label>
+                        @Html.DropDownList("---ID", null, "All ---", htmlAttributes: new { @class = "form-control" })
+                        </div>*@
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Search Company Name:</label>
+                        @Html.TextBox("SearchString", null, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Search Company Type:</label>
+                        @Html.TextBox("typeSearchString", null, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label class="control-label">Search By Company Status:</label>
+                        @Html.DropDownList("ActiveState", null, htmlAttributes: new { @class = "form-control" })
+
+
+                    </div>
+                    @*<div class="form-group col-md-4">
+                        <label class="control-label">Show Inactive:</label>
+                        @Html.CheckBox("showInactive", null, new { @class = "form-control" })
+                        </div>*@
+                    <div class="form-group col-md-4 align-self-end">
+                        <input type="submit" name="actionButton" value="Apply" class="btn btn-outline-primary" />
+                        <a asp-action="Index" class="btn btn-outline-dark">Clear</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid d-block d-lg-none">
+        <div class="card-deck-wrapper">
+            <div class="card-deck">
+                @foreach (var item in Model)
+                {
+                    <div class="card mb-sm-3" style="min-width: 18rem;">
+                        <h5 class="card-header">
+                            @if (item.IsActive || item.PrimaryCompID > 0)
+                            {
+                                <span class="entry-active">Active</span>
+                            }
+                            else
+                            {
+                                <span class="entry-inactive">Inactive</span>
+                            }
+                            <strong>@Html.DisplayFor(modelItem => item.CompName)</strong>
+                        </h5>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong>Phone: </strong>@Html.DisplayFor(modelItem => item.CompPhone)<br />
+                                <strong>Location: </strong>@Html.DisplayFor(modelItem => item.CompLocation)<br />
+                                <strong>Website: </strong>@Html.DisplayFor(modelItem => item.CompWebsite)<br />
+                                <strong>
+                                    Type:
+                                    @if (item.IsContractor)
+                                    {
+                                        <span class="entry-contractor">Contractor</span>
+
+                                        <span>&nbsp;</span>
+                                    }
+                                    @if (item.IsVendor)
+                                    {
+                                        <span class="entry-vendor">Vendor</span>
+
+                                        <span>&nbsp;</span>
+                                    }
+                                    @if (item.IsCustomer)
+                                    {
+                                        <span class="entry-customer">Customer</span>
+
+                                        <span>&nbsp;</span>
+                                    }
+                                </strong>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="actionButtons">
+                                @if (User.IsInRole("Admin") || User.IsInRole("Supervisor"))
+                                {
+                                    <button class="btn btn-outline-secondary btnMerge" data-id="@item.ID" data-name="@item.CompName" data-locatin="@item.CompLocation" data-toggle="modal" data-target="#mergeCompanyModal" type="button"> Merge</button>
+                                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                                }
+                                <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Supervisor"))
+                                {
+                                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <table class="table d-none d-lg-table">
+        <thead>
+            <tr>
+                <th>
+                    @*<input type="submit"  data-toggle="modal" data-target="#mergeCompanyModal" value="Merge" class="btn btn-link" />*@
+                </th>
+                <th>
+                    <input type="submit" name="actionButton" value="Company Name" class="btn btn-link" />
+                </th>
+                <th>
+                    <input type="submit" name="actionButton" value="Location" class="btn btn-link" />
+                </th>
+                <th>
+                    <input type="submit" disabled="disabled" value="Phone Number" class="btn btn-link" />
+                </th>
+                <th>
+                    <input type="submit" disabled="disabled" value="Website" class="btn btn-link" />
+                </th>
+                <th>
+                    <input type="submit" name="actionButton" value="Billing Term" class="btn btn-link" />
+                </th>
+                <th>
+                    <input type="submit" name="actionButton" value="Type" class="btn btn-link" />
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody class="testclass">
+            @foreach (var item in Model)
+            {
+                <tr ondblclick="goToEdit(@item.ID)" class="@( item.IsActive ? "" : "inactive-item" )">
+                    <td>
+                        @*<input class="single-checkbox" type="checkbox" name="vehicle" value="@item.ID">*@<!--<br>-->
+                        @if (User.IsInRole("Admin") || User.IsInRole("Supervisor"))
+                        {
+                            @if (item.IsActive)
+                            {
+                                <button class="btn btn-outline-primary btnMerge" data-id="@item.ID" data-name="@item.CompName" data-locatin="@item.CompLocation" data-toggle="modal" data-target="#mergeCompanyModal" type="button"> Merge</button>
+                            }
+                            else if (item.PrimaryCompID == 0)
+                            {
+                                <button class="btn btn-outline-danger " type="button"> Inactive</button>
+
+                            }
+                            else
+                            {
+                                <button class="btn btn-outline-dark " type="button"> Merged</button>
+
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompLocation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompWebsite)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BillingTerm.TermName)
+                    </td>
+                    <td>
+                        @if (item.IsContractor)
+                        {
+                            <span class="entry-contractor">Contractor</span>
+
+                            <span>&nbsp;</span>
+                        }
+                        @if (item.IsVendor)
+                        {
+                            <span class="entry-vendor">Vendor</span>
+
+                            <span>&nbsp;</span>
+                        }
+                        @if (item.IsCustomer)
+                        {
+                            <span class="entry-customer">Customer</span>
+
+                            <span>&nbsp;</span>
+                        }
+                    </td>
+                    <td>
+                        <div class="actionButtons">
+                            @if (User.IsInRole("Admin") || User.IsInRole("Supervisor"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                            }
+                            <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Supervisor"))
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <partial name="_PagingNavBar" />
+    <div class="modal fade" id="mergeCompanyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Merge Companies Detail</h4>
+                    <button type="button" class="close" id="closeModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="tabs-wrap">
+                        <ul class="nav nav-tabs hidden" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#billing" aria-controls="billing" role="tab" data-toggle="tab" aria-expanded="true">Merge Details</a>
+                            </li>
+                            <li>
+                                <a href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab" aria-expanded="false">Edit</a>
+                            </li>
+
+                        </ul>
+
+                        <div class="tab-content">
+
+                            <div role="tabpanel" class="tab-pane active" id="billing">
+                                <h3 class="">Merge Details</h3>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Seconday Company</h5>
+                                                    <p class="card-text">Please selct the secondary company to merge</p>
+                                                    <select class="form-control" id="ddlCompany">
+                                                        <option value="0">-Select Company- </option>
+
+                                                        @foreach (var item in ViewBag.newComList)
+                                                        {
+                                                            <option value="@item.ID">@item.DisplayText </option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div style="display: flex; align-items: center; text-align: center; font-size: 3em;">
+                                                <i class="bi bi-arrow-right w-100"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Primary Company</h5>
+                                                    <p class="card-text">
+                                                        <label id="lblMergeWith" class="card-text" style="font-size: 2em; font-weight: bold;"> </label>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bg-warning mt-4">
+                                        <div class="col-md-12">
+                                            <h3 class="text-left">
+                                                Warning
+                                            </h3>
+                                            <ul>
+                                                <li class="list-item">The resulting company record will use the primary details</li>
+                                                <li class="list-item">All the related data will be presered in the new record</li>
+                                                <li class="list-item">The most recent value for each property (e.g, "Name, Location") will be used for the new record</li>
+                                                <li class="list-item">This action can not be undone</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-md-12">
+                                            <h3 class="text-center">
+                                                <div id="mergeMSG" class=" hidden">
+                                                    <label id="lblMerge" class="card-text "> </label>
+                                                    Will Merge into
+                                                    <label id="lblMergeWithSecond" class="card-text"> </label>
+                                                </div>
+
+                                            </h3>
+                                            <div class="clearfix"></div>
+                                            <span class="label label-danger hidden" id="lblerror">Please select Company</span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane" id="shipping">
+                                <h3 class="">Edit</h3>
+                                <div id="dvUserdetails" style="display:none">
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
+                        <a class=" btn btn-outline-primary btn-sm pull-right continue" id="btncontinue">Continue</a>
+                        <button type="button" id="btnsavechanges" class="btn btn-primary hidden">Save Changes</button>
+                    </div>
+                    @*<div id="push">
+                        <a class="btn btn-primary ">Save</a>
+                        </div>*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+<script src="~/js/company.js"></script>
+<script>
+    function goToEdit(s) {
+
+          location.href = "@Url.Action("Edit", "Companies", new {id= "cid" })".replace("cid",s.toString());
+      }
+
+</script>
+}

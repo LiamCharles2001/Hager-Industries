@@ -1,0 +1,631 @@
+﻿@model HagerIndustries.Models.Company
+
+@{ ViewData["Title"] = "Edit Company"; }
+<input type="hidden" asp-for="ID" />
+<input type="hidden" name="returnURL" value="@ViewData["returnURL"]" />
+
+<div class="modal fade" id="addBillingCountryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Billing Country</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @{ var a = new HagerIndustries.Models.Country();
+                    <partial name="_BillingCountryCreate" model="a" /> }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addBillingProvinceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Billing Province</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @{ var b = new HagerIndustries.Models.Province();
+                    <partial name="_BillingProvinceCreate" model="b" /> }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addBillingCityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Billing City</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @{ var c = new HagerIndustries.Models.City();
+                    <partial name="_BillingCityCreate" model="c" /> }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addShippingCountryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Shipping Country</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @{ var d = new HagerIndustries.Models.Country();
+                    <partial name="_ShippingCountryCreate" model="d" /> }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addShippingProvinceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Shipping Province</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @{ var e = new HagerIndustries.Models.Province();
+                    <partial name="_ShippingProvinceCreate" model="e" /> }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addShippingCityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Shipping City</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @{ var f = new HagerIndustries.Models.City();
+                    <partial name="_ShippingCityCreate" model="f" /> }
+            </div>
+        </div>
+    </div>
+</div>
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ID" />
+    <div class="container-fluid bg-white">
+        <div class="row">
+            <div class="col-md-12 bg-light p-2">
+                <h3 class="text-center">
+                    Editing: @Html.DisplayFor(model => model.CompName)
+                </h3>
+            </div>
+        </div>
+        <div class="row mt-1 p-1">
+            <div class="col-md-6 mt-1 p-1">
+                <div class="col-md-12 bg-light p-3">
+                    <h4 class="text-center">Basic</h4>
+                    <div class="form-group">
+                        <label asp-for="CompName" class="control-label"></label>
+                        <input asp-for="CompName" class="form-control" />
+                        <span asp-validation-for="CompName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompLocation" class="control-label"></label>
+                        <input asp-for="CompLocation" class="form-control" />
+                        <span asp-validation-for="CompLocation" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompPhone" class="control-label"></label>
+                        <input asp-for="CompPhone" class="form-control" />
+                        <span asp-validation-for="CompPhone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompWebsite" class="control-label"></label>
+                        <input asp-for="CompWebsite" class="form-control" />
+                        <span asp-validation-for="CompWebsite" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-1 p-1">
+                <div class="col-md-12 bg-light p-3">
+                    <div class="form-group">
+                        <h4 class="text-center">Accounting</h4>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="CreditCheck" /> @Html.DisplayNameFor(model => model.CreditCheck)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CreditCheckDate" class="control-label"></label>
+                        <input asp-for="CreditCheckDate" class="form-control" />
+                        <span asp-validation-for="CreditCheckDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CurrencyID" class="control-label"></label>
+                        <select asp-for="CurrencyID" class="form-control" asp-items="ViewBag.CurrencyID"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BillingTermID" class="control-label"></label>
+                        <select asp-for="BillingTermID" class="form-control" asp-items="ViewBag.BillingTermID"></select>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            @if (Model.IsActive)
+                            {
+                                <input class="form-check-input" asp-for="IsActive" checked /> @Html.DisplayNameFor(model => model.IsActive)
+                            }
+                            else
+                            {
+                                <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                            }
+
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1 p-1">
+            <div class="col-md-6 mt-1 p-1">
+                <div class="col-md-12 bg-light p-3">
+                    <h4 class="text-center">Billing</h4>
+
+                    <div class="form-group">
+                        <label asp-for="BillingAddressOne" class="control-label"></label>
+                        <input asp-for="BillingAddressOne" class="form-control" />
+                        <span asp-validation-for="BillingAddressOne" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BillingAddressTwo" class="control-label"></label>
+                        <input asp-for="BillingAddressTwo" class="form-control" />
+                        <span asp-validation-for="BillingAddressTwo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BillingPostal" class="control-label"></label>
+                        <input asp-for="BillingPostal" class="form-control" />
+                        <span asp-validation-for="BillingPostal" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BillingCountryID" class="control-label"></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" id="nowAddBillingCountry" data-toggle="modal" data-target="#addBillingCountryModal" type="button"><strong>+</strong></button>
+                            </div>
+                            <select asp-for="BillingCountryID" class="form-control" asp-items="ViewBag.BillingCountryID">
+                                <option value="">Select a Billing Country</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="BillingCountryID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BillingProvinceID" class="control-label"></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" id="nowAddBillingProvince" data-toggle="modal" data-target="#addBillingProvinceModal" type="button"><strong>+</strong></button>
+                            </div>
+                            <select asp-for="BillingProvinceID" class="form-control" asp-items="ViewBag.BillingProvinceID">
+                                <option value="">Select a Billing Province</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="BillingProvinceID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BillingCityID" class="control-label"></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" id="nowAddBillingCity" data-toggle="modal" data-target="#addBillingCityModal" type="button"><strong>+</strong></button>
+                            </div>
+                            <select asp-for="BillingCityID" class="form-control" asp-items="ViewBag.BillingCityID">
+                                <option value="">Select a Billing City</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="ShippingCountryID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-1 p-1">
+                <div class="col-md-12 bg-light p-3">
+                    <h4 class="text-center">Shipping</h4>
+                    <div class="form-group">
+                        <label asp-for="ShippingAddressOne" class="control-label"></label>
+                        <input asp-for="ShippingAddressOne" class="form-control" />
+                        <span asp-validation-for="ShippingAddressOne" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShippingAddressTwo" class="control-label"></label>
+                        <input asp-for="ShippingAddressTwo" class="form-control" />
+                        <span asp-validation-for="ShippingAddressTwo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShippingPostal" class="control-label"></label>
+                        <input asp-for="ShippingPostal" class="form-control" />
+                        <span asp-validation-for="ShippingPostal" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShippingCountryID" class="control-label"></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" id="nowAddShippingCountry" data-toggle="modal" data-target="#addShippingCountryModal" type="button"><strong>+</strong></button>
+                            </div>
+                            <select asp-for="ShippingCountryID" class="form-control" asp-items="ViewBag.ShippingCountryID">
+                                <option value="">Select a Shipping Country</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="ShippingCountryID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShippingProvinceID" class="control-label"></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" id="nowAddShippingProvince" data-toggle="modal" data-target="#addShippingProvinceModal" type="button"><strong>+</strong></button>
+                            </div>
+                            <select asp-for="ShippingProvinceID" class="form-control" asp-items="ViewBag.ShippingProvinceID">
+                                <option value="">Select a Shipping Province</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="ShippingProvinceID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShippingCityID" class="control-label"></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" id="nowAddShippingCity" data-toggle="modal" data-target="#addShippingCityModal" type="button"><strong>+</strong></button>
+                            </div>
+                            <select asp-for="ShippingCityID" class="form-control" asp-items="ViewBag.ShippingCityID">
+                                <option value="">Select a Shipping City</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="ShippingCityID" class="text-danger"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1 p-1">
+            <div class="col-md-12 mt-1 p-1 bg-light">
+                <div class="form-group p-2">
+                    <label asp-for="Note" class="control-label"></label>
+                    <textarea asp-for="Note" class="form-control"></textarea>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1 p-1">
+            <div class="col-md-12 bg-light mt-1 p-1">
+                <h3 class="text-center">
+                    Contact
+                </h3>
+                <table class="table">
+                    <colgroup>
+                        <col span="1" />
+                        <col span="1" />
+                        <col span="1" />
+                        <col span="1" />
+                    </colgroup>
+                    <tr>
+                        <th>
+                            <input type="submit" name="actionButton" value="Full Name" class="btn btn-link" />
+                        </th>
+                        <th>
+                            <input type="submit" name="actionButton" value="Email" class="btn btn-link" />
+                        </th>
+                        <th>
+                            <input type="submit" name="actionButton" value="Job Title" class="btn btn-link" />
+                        </th>
+
+                        <th>
+                            <button class="btn btn-outline-secondary" id="nowAddContact" data-toggle="modal" data-target="#addContactModal" type="button"><strong>&#x271A; Add</strong></button>
+
+                            @*<a asp-controller="PatientAppt" asp-action="Add" asp-route-PatientID="@patient.ID" asp-route-PatientName="@patient.FullName">
+                                <span class="btn btn-success"><strong>&#x271A; Add</strong></span>
+                            </a>*@
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.Contacts)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.JobTitle)
+                            </td>
+                            <td>
+                                <a asp-controller="Contacts" asp-action="Edit" asp-route-id="@item.ID">
+                                    <span class="btn btn-sm btn-outline-primary">&#x270D;</span>
+                                </a>
+                                <a asp-controller="Contacts" asp-action="Delete" asp-route-id="@item.ID">
+                                    <span class="btn btn-sm btn-outline-danger">&#x274C</span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+        <div class="row mt-1 p-1">
+            <div class="col-md-4 mt-1 p-1">
+                <div class="col-md-12  bg-light p-1">
+                    <h4 class="text-center">Customer</h4>
+                    <label class="form-check-label">
+                        <input class="" asp-for="IsCustomer" /> @Html.DisplayNameFor(model => model.IsCustomer)
+                    </label>
+                    <div class="row" id="lbCustomerTypes">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label"> Assigned Customer Types </label> <button type="button" id="btnCustomerRight" class="btn btn-danger btn-sm">
+                                        <strong>-</strong>
+                                    </button>
+                                    @Html.ListBox("selectedCustomerOptions", (MultiSelectList)ViewBag.selCustomerOpts, new { @size = 10, @class = "form-control" })
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label"> Choose Customer Types </label> <button type="button" id="btnCustomerLeft" class="btn btn-success btn-sm">
+                                        <strong>+</strong>
+                                    </button>
+                                    @Html.ListBox("availCustomerOptions", (MultiSelectList)ViewBag.availCustomerOpts, new { @size = 10, @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-1 p-1">
+                <div class="col-md-12  bg-light p-1">
+                    <h4 class="text-center">Vendor</h4>
+                    <label class="form-check-label">
+                        <input class="" asp-for="IsVendor" /> @Html.DisplayNameFor(model => model.IsVendor)
+                    </label>
+                    <div class="row" id="lbVendorTypes">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label"> Assigned Vendor Types </label> <button type="button" id="btnVendorRight" class="btn btn-danger btn-sm">
+                                        <strong>-</strong>
+                                    </button>
+                                    @Html.ListBox("selectedVendorOptions", (MultiSelectList)ViewBag.selVendorOpts, new { @size = 10, @class = "form-control" })
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label"> Choose Vendor Types </label> <button type="button" id="btnVendorLeft" class="btn btn-success btn-sm">
+                                        <strong>+</strong>
+                                    </button>
+                                    @Html.ListBox("availVendorOptions", (MultiSelectList)ViewBag.availVendorOpts, new { @size = 10, @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-1 p-1">
+                <div class="col-md-12  bg-light p-1">
+                    <h4 class="text-center">Contractor</h4>
+                    <label class="form-check-label">
+                        <input class="" asp-for="IsContractor" /> @Html.DisplayNameFor(model => model.IsContractor)
+                    </label>
+                    <div class="row" id="lbContractorTypes">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label"> Assigned Contractor Types </label> <button type="button" id="btnContractorRight" class="btn btn-danger btn-sm">
+                                        <strong>-</strong>
+                                    </button>
+                                    @Html.ListBox("selectedContractorOptions", (MultiSelectList)ViewBag.selContractorOpts, new { @size = 10, @class = "form-control" })
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label">Choose Contractor Types</label> <button type="button" id="btnContractorLeft" class="btn btn-success btn-sm">
+                                        <strong>+</strong>
+                                    </button>
+                                    @Html.ListBox("availContractorOptions", (MultiSelectList)ViewBag.availContractorOpts, new { @size = 10, @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1 p-1 bg-light">
+            <a href='@ViewData["returnURL"]' class="btn btn-outline-primary">Back to List of Employees</a>&nbsp;
+            <input type="submit" value="Save" class="btn btn-primary" id="btnSubmit" />
+        </div>
+    </div>
+</form>
+<!-- Modal-->
+<div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Contact</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @{ var g = new HagerIndustries.Models.Contact();
+                    <partial name="_ContactCreate" model="g" /> }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/multiselect.js"></script>
+    <script src="~/js/refreshDDL.js"></script>
+    <script type="text/javascript">
+        $('#submitCreateContact').click(function (event) {
+            event.preventDefault();
+            $('#CompanyID').val($('#ID').val());
+            var form = $('#createContactForm');
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#addContactModal').modal('hide');
+                    },
+                    error: function () {
+                        alert("Create Failed.  There was a problem adding the record.");
+                    }
+                });
+            }
+            return false;
+        });
+
+        $('#addContactModal').on('hide.bs.modal', function () {
+            $('#createContactForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+            refreshDDL('ContactID', 'Companies/GetContacts', false, '');
+            location.reload();
+        });
+
+        $('#submitCreateShippingCountry').click(function (event) {
+            event.preventDefault();
+            var form = $('#createShippingCountryForm');
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#addShippingCountryModal').modal('hide');
+                    },
+                    error: function () {
+                        alert("Create Failed.  There was a problem adding the record.");
+                    }
+                });
+            }
+            return false;
+        });
+
+        $('#addShippingCountryModal').on('hide.bs.modal', function () {
+            $('#createShippingCountryForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+            refreshDDL('ShippingCountryID', 'Companies/GetShippingCountries', false, '');
+        });
+
+        $('#submitCreateShippingProvince').click(function (event) {
+            event.preventDefault();
+            var form = $('#createShippingProvinceForm');
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#addShippingProvinceModal').modal('hide');
+                    },
+                    error: function () {
+                        alert("Create Failed.  There was a problem adding the record.");
+                    }
+                });
+            }
+            return false;
+        });
+
+        $('#addShippingProvinceModal').on('hide.bs.modal', function () {
+            $('#createShippingProvinceForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+            refreshDDL('ShippingProvinceID', 'Companies/GetShippingProvinces', false, '');
+        });
+
+        $('#submitCreateShippingCity').click(function (event) {
+            event.preventDefault();
+            var form = $('#createShippingCityForm');
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#addShippingCityModal').modal('hide');
+                    },
+                    error: function () {
+                        alert("Create Failed.  There was a problem adding the record.");
+                    }
+                });
+            }
+            return false;
+        });
+
+        $('#addShippingCityModal').on('hide.bs.modal', function () {
+            $('#createShippingCityForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+
+            refreshDDL('ShippingCityID', 'Companies/GetShippingCities', false, '');
+        });
+
+        $('#submitCreateBillingCountry').click(function (event) {
+            event.preventDefault();
+            var form = $('#createBillingCountryForm');
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#addBillingCountryModal').modal('hide');
+                    },
+                    error: function () {
+                        alert("Create Failed.  There was a problem adding the record.");
+                    }
+                });
+            }
+            return false;
+        });
+
+        $('#addBillingCountryModal').on('hide.bs.modal', function () {
+            $('#createBillingCountryForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+            refreshDDL('BillingCountryID', 'Companies/GetBillingCountries', false, '');
+        });
+
+        $('#submitCreateBillingProvince').click(function (event) {
+            event.preventDefault();
+            var form = $('#createBillingProvinceForm');
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#addBillingProvinceModal').modal('hide');
+                    },
+                    error: function () {
+                        alert("Create Failed.  There was a problem adding the record.");
+                    }
+                });
+            }
+            return false;
+        });
+        $('#addBillingProvinceModal').on('hide.bs.modal', function () {
+            $('#createBillingProvinceForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+            refreshDDL('BillingProvinceID', 'Companies/GetBillingProvinces', false, '');
+        });
+
+        $('#submitCreateBillingCity').click(function (event) {
+            event.preventDefault();
+            var form = $('#createBillingCityForm');
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#addBillingCityModal').modal('hide');
+                    },
+                    error: function () {
+                        alert("Create Failed.  There was a problem adding the record.");
+                    }
+                });
+            }
+            return false;
+        });
+        $('#addBillingCityModal').on('hide.bs.modal', function () {
+            $('#createBillingCityForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+
+            refreshDDL('BillingCityID', 'Companies/GetBillingCities', false, '');
+        });
+    </script>
+}

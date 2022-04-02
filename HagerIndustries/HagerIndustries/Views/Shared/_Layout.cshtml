@@ -1,0 +1,170 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HagerIndustries</title>
+
+    <!-- Page Styling -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/global.css" />
+    <link rel="stylesheet" href="~/css/views.css" />
+    <link rel="stylesheet" href="~/font-awesome/css/font-awesome.min.css">
+    
+    <!-- Calendar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.css">
+
+    <!-- SVG Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/assets/img/favicon_package_v0.16/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/assets/img/favicon_package_v0.16/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/img/favicon_package_v0.16/favicon-16x16.png">
+    <!--link rel="manifest" href="~/assets/img/favicon_package_v0.16/site.webmanifest">
+    <link rel="mask-icon" href="~/assets/img/favicon_package_v0.16/site.webmanifest" color="#cc1f1f"-->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <button id="nav-toggle">
+                    <svg viewBox="0 0 80 80" width="40" height="40">
+                        <rect width="80" height="7"></rect>
+                        <rect y="30" width="80" height="7"></rect>
+                        <rect y="60" width="80" height="7"></rect>
+                    </svg>
+                </button>
+            }
+            <img id="hager-logo" src="~/assets/img/JPG/Main-HagerIndustries_Logo.jpg" alt="Hager Industries Inc. logo" />
+        </div>
+        <div id="header-accounts-area">
+            <partial name="_LoginPartial" />
+        </div>
+    </header>
+    <div id="body-container">
+        @if (SignInManager.IsSignedIn(User))
+        {
+        <aside id="nav">
+            <nav>
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-header nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-header collapsible nav-link" id="nav-companies">
+                            <span>Companies</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <ul>
+                            <li>
+                                <a class="nav-link" asp-area="" asp-controller="Companies" asp-action="Index">All Companies</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-area="" asp-controller="CompanyCustomers" asp-action="Index">Customers</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-area="" asp-controller="CompanyVendors" asp-action="Index">Vendors</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-area="" asp-controller="CompanyContractors" asp-action="Index">Contractors</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-header collapsible nav-link" id="nav-contacts">
+                            <span>Contacts</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <ul>
+                            <li>
+                                <a class="nav-link" asp-area="" asp-controller="Contacts" asp-action="Index">All Contacts</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-area="" asp-controller="ContactCustomers" asp-action="Index">Customer Contacts</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-area="" asp-controller="ContactVendors" asp-action="Index">Vendor Contacts</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-area="" asp-controller="ContactContractors" asp-action="Index">Contractor Contacts</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-header collapsible nav-link" id="nav-management">
+                            <span>Management</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <ul>
+                            <li>
+                                <a class="nav-link" asp-area="" asp-controller="Employees" asp-action="Index">Employees</a>
+                            </li>
+                        </ul>
+                    </li>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Supervisor"))
+                    {
+                        <li class="nav-item">
+                            <div class="nav-header collapsible nav-link" id="nav-admin">
+                                <span>Admin Options</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <ul id="nav-admin-list">
+                                <li>
+                                    <a class="nav-link" asp-area="" asp-controller="Lookups" asp-action="Index">Lookup Configuration</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" asp-area="" asp-controller="Announcements" asp-action="Index">Announcements</a>
+                                </li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li>
+                                        <a class="nav-link" asp-area="" asp-controller="UserRoles" asp-action="Index">Users & Roles</a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </nav>
+            <div class="hager-footer">
+                <hr />
+                <p style="font-family: monospace; font-size: 1em; text-align: center;">@Context.Request.Path</p>
+                <hr />
+                <p>&copy; 2021 - The Binary Gurus</p>
+                <p>Made for Hager Industries Inc.</p>
+            </div>
+        </aside>
+        }
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        <!--footer class="border-top footer text-muted">
+            <div>
+                <p>&copy; 2021 - The Binary Gurus</p>
+                <p>Made for Hager Industries Inc. @Context.Request.Path</p>
+            </div>
+        </footer-->
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
+    </div>
+</body>
+</html>

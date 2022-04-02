@@ -1,0 +1,420 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Web;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model HagerIndustries.ViewModels.Dashboard
+
+
+@{ ViewData["Title"] = "Dashboard"; }
+
+<div class="text-center container-fluid">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="row">
+            <div class="col-md-12 bg-light p-3">
+                <h3>Dashboard</h3>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-lg-7 col-md-12">
+                <div id="calendar"></div>
+            </div>
+            <div id="updateEventModal" class="modal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Update Event</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <input type="hidden" id="hdEventID" value="0" />
+                                <p id="updateEventErrors" class="text-danger"></p>
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" id="txtEventSubject" class="form-control" placeholder="Event name..." />
+                                </div>
+                                <div class="form-group">
+                                    <label>Start</label>
+                                    <div class="input-group date">
+                                        <input type="date" id="txtEventStartDate" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>End</label>
+                                    <div class="input-group date" id="txtEventEnd">
+                                        <input type="date" id="txtEventEndDate" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <button type="button" id="btnUpdateEvent" class="btn btn-success">Save</button>
+                                <button type="button" id="btnDeleteEvent" class="btn btn-danger">Delete</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="createEventModal" class="modal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Create Event</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <input type="hidden" id="hdEventID" value="0" />
+                                <p id="createEventErrors" class="text-danger"></p>
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" id="txtCreateEventSubject" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Start</label>
+                                    <div class="input-group date">
+                                        <input type="date" id="txtCreateEventStartDate" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>End</label>
+                                    <div class="input-group date" id="txtCreateEventEnd">
+                                        <input type="date" id="txtCreateEventEndDate" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <button type="button" id="btnSaveNewEvent" class="btn btn-success">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 bg-light">
+                <h5 style="padding: 1em 0;">
+                    Announcements
+                </h5>
+                <div>
+                    <table class="table table-borderless table-hover">
+                        <colgroup class="row">
+                            <col class="col-1" />
+                            <col class="col-5" />
+                            <col class="col-4" />
+                            <col class="col-2" />
+                        </colgroup>
+                        <tbody>
+                            @foreach (var item in Model.Announcements)
+                            {
+                                <tr class="mt-5">
+                                    <td>
+                                        <b class="text-left">
+                                            @Html.DisplayFor(modelItem => item.Title)
+
+                                        </b>
+                                    </td>
+                                    <td>
+                                        <p class="card-text text-left">
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="card-text text-left text-nowrap">
+                                            @Html.DisplayFor(modelItem => item.ExpireDate)
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Announcements" asp-action="Details" asp-route-id="@item.ID">Details</a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h1 class="display-4" style="margin-bottom: .25em;">Welcome!</h1>
+        <p>Welcome to Hager Industries' Customer Relation Management (CRM) software application.</p>
+        <p>Please <a asp-area="Identity" asp-page="/Account/Login">log in</a> to continue.</p>}
+</div>
+
+@{
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $(".card").hover(
+                function () {
+                    $(this).addClass('shadow-lg').css('cursor', 'pointer');
+                }, function () {
+                    $(this).removeClass('shadow-lg');
+                }
+            );
+        });
+    </script>
+
+    <link href='~/fullcalendar/main.css' rel='stylesheet' />
+    <script src='~/fullcalendar/main.js'></script>
+    <script>
+        // LF
+        // Enjoy the 🍝
+        const isAdmin = @User.IsInRole("Admin").ToString().ToLower();
+        const isSupervisor = @User.IsInRole("Supervisor").ToString().ToLower();
+        const isPowerless = (!isAdmin && !isSupervisor);
+
+        let lastUpdatedEventID = null;
+        let lastClickedDate = null;
+
+        // First thing we do is grab all events already on the server, and if
+        // successful, prepare them.
+        document.addEventListener('DOMContentLoaded', function () {
+            $.ajax({ url: 'Home/GetEvents', type: 'GET', success: prepareEvents });
+            //console.log('User is allowed to add events: ' + !isPowerless);
+        });
+
+        function prepareEvents(events) {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                events: events,
+                initialView: 'dayGridMonth'
+            });
+
+            calendar.render();
+
+            calendar.on('dateClick', function (info) {
+                if (!isPowerless) {
+                    lastClickedDate = formatDateFor(new Date(info.dateStr), 'txt');
+                    console.log('Clicked on a date: ' + info.dateStr + '. Last-clicked date: ' + lastClickedDate);
+
+                    // Show modal, and put the clicked date into the textbox.
+                    $("#createEventModal").modal("show");
+                    $('#txtCreateEventStartDate').val(lastClickedDate);
+                }
+            });
+
+            calendar.on('eventClick', function (info) {
+                info.jsEvent.preventDefault();
+                if (!isPowerless) {
+                    showUpdateModal(info);
+                }
+            });
+
+            calendar.on('eventAdd', function (addInfo) {
+                if (!isPowerless) {
+                    console.log('event added!' + addInfo);
+                    sendEvent(addInfo.event);
+                }
+            });
+
+            // Updating Event
+            $("#btnUpdateEvent").on("click", function () {
+                if (!isPowerless) {
+                    let title = $("#txtEventSubject").val();
+                    let start = new Date($("#txtEventStartDate").val());
+                    let end = new Date($("#txtEventEndDate").val());
+
+                    console.log('start: ' + start.toISOString() + '\nend: ' + end.toISOString());
+
+                    if (start.getTime() > end.getTime()) {
+                        $("#updateEventErrors").text("Unable to update event: The end date is before the start date. Please fix and try again.");
+                        return;
+                    }
+
+                    if (lastUpdatedEventID !== null) {
+                        if (title.length > 0) {
+                            $.post('Home/UpdateEvent',
+                                {
+                                    id: lastUpdatedEventID,
+                                    title: title,
+                                    start: formatDateFor(start, 'db'),
+                                    end: formatDateFor(end, 'db'),
+                                    allDay: event.allDay
+                                },
+                                function (data) {
+                                    $("#updateEventModal").modal("hide");
+                                    window.location.reload();
+                                }, "text");
+                        } else {
+                            $("#updateEventErrors").text("Unable to update event: The event title is required. Please fix and try again.");
+                            return;
+                        }
+                    }
+                }
+            });
+
+            // Creating Event
+            $('#btnSaveNewEvent').on('click', function () {
+                if (!isPowerless) {
+                    if (lastClickedDate != null) {
+                        let title = $('#txtCreateEventSubject').val();
+                        let start = new Date($('#txtCreateEventStartDate').val());
+                        let end = new Date($('#txtCreateEventEndDate').val());
+
+                        console.log('title: ' + title + '\nstart: ' + start + '\nend: ' + end);
+
+                        // Creating a code which is a not-always-unique-but-close-enough
+                        // combination of the specific event's properties. This NEEDS to
+                        // be done because the IDs are a string, which cannot be auto-
+                        // incremented by the tools we are using AFAIK.
+                        let idHash = '';
+                        if (start.getTime() <= end.getTime())
+                            idHash = (title + '-' + start + '-' + end).hashCode();
+                        else {
+                            $("#createEventErrors").text("Unable to create event: The end date is before the start date. Please fix and try again.");
+                        }
+                        // Adds event to the calendar on the web page.
+                        // It is sent to the server after this in sendEvent()
+
+                        if (idHash !== '') {
+                            if (title.length > 0) {
+                                calendar.addEvent({
+                                    id: idHash,
+                                    title: title,
+                                    start: formatDateFor(start, 'db'),
+                                    end: formatDateFor(end, 'db'),
+                                    allDay: true
+                                });
+                            } else {
+                                $("#createEventErrors").text("Unable to create event: The event title is required. Please fix and try again.");
+                                return;
+                            }
+                        }
+                    }
+                }
+            });
+
+            $('#btnDeleteEvent').on('click', function () {
+                if (!isPowerless) {
+                    let confirmation = confirm('Are you sure that you want to delete this event ("' + $("#txtEventSubject").val() + '")?');
+                    if (confirmation && lastUpdatedEventID !== null) {
+                        $.post('Home/DeleteEvent',
+                            {
+                                id: lastUpdatedEventID,
+                                title: $("#txtEventSubject").val(),
+                                start: formatDateFor(new Date($("#txtEventStartDate").val()), 'db'),
+                                end: formatDateFor(new Date($("#txtEventEndDate").val()), 'db'),
+                                allDay: event.allDay
+                            }, function () {
+                                $("#updateEventModal").modal("hide");
+                                window.location.reload();
+                            }, "text");
+                    }
+                }
+            });
+
+            // If the user can add events, hint it to them with their mouse cursor.
+            if (!isPowerless) {
+                $('.fc-daygrid-day').hover(function () {
+                    $(this).css('cursor', 'pointer');
+                }, function () {
+                    $(this).css('cursor', 'default');
+                });
+            }
+        }
+
+        function showUpdateModal(info) {
+            $("#updateEventModal").modal("show");
+
+            let start = formatDateFor(info.event.start, 'txt');
+            let end = (info.event.end == null) ? start : formatDateFor(info.event.end, 'txt');
+
+            //console.log('Filling modal values... ' + JSON.stringify(info.event) + '\nStart: ' + start + '\nEnd: ' + end);
+            console.log('Fillin\' modal values...');
+
+            lastUpdatedEventID = info.event.id;
+            $("#txtEventSubject").val(info.event.title);
+            $("#txtEventStartDate").val(start);
+            $("#txtEventEndDate").val(end);
+        }
+
+        // This is a callback after calendar.addEvent() is called.
+        // It sends the event to the server.
+        function sendEvent(event) {
+            if (!isPowerless) {
+                $('#createEventModal').modal("hide");
+                $('#updateEventModal').modal("hide");
+
+                let start = formatDateFor(event.start, 'db');
+                let end = (event.end == null) ? start : formatDateFor(event.end, 'db');
+
+                $.post('Home/SaveEvent',
+                    {
+                        id: event.id,
+                        title: event.title,
+                        start: start,
+                        end: end,
+                        allDay: true
+                    },
+                    function (data) {
+                        //console.log("data sent: " + data)
+                    }, "json");
+
+                $('#txtCreateEventSubject').val("");
+                $('#txtCreateEventStartDate').val("");
+                $('#txtCreateEventEndDate').val("");
+
+                $('#txtEventSubject').val("");
+                $('#txtEventStartDate').val("");
+                $('#txtEventEndDate').val("");
+            }
+        }
+
+        // This function lets ya choose whether the date should be
+        // formatted for either the database or textboxes, with the
+        // second parameter. Choices are 'db' for Database and 'txt'
+        // for textboxes.
+        function formatDateFor(d, type) {
+            let date = new Date(d.getTime() - d.getTimezoneOffset() * -60000);
+            let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date);
+            let mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(date);
+            let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date);
+
+            if (type == 'db') {
+                //console.log(`Formatted for database: ${ye}-${mo}-${da}T00:00:00`);
+                return `${ye}-${mo}-${da}T00:00:00`;
+            } else if (type == 'txt') {
+                //console.log(`Formatted for textbox: ${ye}-${mo}-${da}`);
+                return `${ye}-${mo}-${da}`;
+            }
+        }
+
+        // For hashing
+        String.prototype.hashCode = function () {
+            var hash = 0, i, chr;
+            if (this.length === 0) return hash;
+            for (i = 0; i < this.length; i++) {
+                chr = this.charCodeAt(i);
+                hash = ((hash << 5) - hash) + chr;
+                hash |= 0; // Convert to 32bit integer
+            }
+            return hash;
+        };
+    </script>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+}

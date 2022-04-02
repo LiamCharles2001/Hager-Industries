@@ -1,0 +1,23 @@
+﻿@model HagerIndustries.Models.Province
+<form asp-action="Create" asp-controller="Provinces" id="createBillingProvinceForm">
+    <div class="row">
+        <div class="col-md-12">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="provName" class="control-label"></label>
+                <input asp-for="provName" class="form-control" />
+                <span asp-validation-for="provName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryID" class="control-label"></label>
+                <select asp-for="CountryID" id="tempCountry" class="form-control" asp-items="ViewBag.BillingCountryID">
+                    <option value="">--Select Country--</option>
+                </select>
+                <span asp-validation-for="CountryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" id="submitCreateBillingProvince" class="btn btn-outline-dark" />
+            </div>
+        </div>
+    </div>
+</form>

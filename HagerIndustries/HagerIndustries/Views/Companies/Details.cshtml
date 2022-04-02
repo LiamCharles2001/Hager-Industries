@@ -1,0 +1,418 @@
+﻿@model HagerIndustries.Models.Company
+
+@{
+    ViewData["Title"] = "Company Details";
+}
+
+<input type="hidden" asp-for="ID" />
+
+
+
+<div class="container-fluid bg-white">
+    <div class="row mt-1 p-1">
+        <div class="col-md-12">
+            <h3 class="text-center">
+                Details: @Html.DisplayFor(model => model.CompName)
+            </h3>
+        </div>
+    </div>
+    <div class="row mt-1 p-1">
+        <div class="col-md-12 ">
+            <h4 class="text-center">
+                @if (Model.IsContractor)
+                {<span class="entry-contractor">Contractor</span><span>&nbsp;</span>}
+                @if (Model.IsVendor)
+                {<span class="entry-vendor">Vendor</span><span>&nbsp;</span>}
+                @if (Model.IsCustomer)
+                {<span class="entry-customer">Customer</span><span>&nbsp;</span>}
+            </h4>
+        </div>
+    </div>
+    <div class="row mt-1 p-1">
+        <div class="col-md-6 mt-1 p-1">
+            <div class="col-md-12 bg-light p-1">
+                <h4 class="text-center">Basic</h4>
+                <dl>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.CompName)
+                    </dt>
+                    <dd class="">
+                        &nbsp;: @Html.DisplayFor(model => model.CompName)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.CompLocation)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.CompLocation)
+                    </dd>
+
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.CompPhone)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.CompPhone)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.CompWebsite)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.CompWebsite)
+                    </dd>
+
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.Note)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.Note)
+                    </dd>
+                    @{
+
+                        int contractorCount = Model.CompanyContractors.Count;
+                    }
+                    @if (Model.IsContractor && contractorCount > 0)
+                    {
+                        <dt class="float-left ml-2">
+                            Contractor Type
+                        </dt>
+                        <dd>
+                            &nbsp;:
+                            @*@Html.DisplayFor(model => model.IsContractor)*@
+                            @{
+                                if (contractorCount > 0)
+                                {
+                                    string firstContractor = Model.CompanyContractors.FirstOrDefault().Contractor.ContractName;
+                                    if (contractorCount > 1)
+                                    {
+                                        string contractorList = "";
+                                        var c = Model.CompanyContractors.ToList();
+                                        for (int i = 1; i < contractorCount; i++)
+                                        {
+                                            contractorList += c[i].Contractor.ContractName + " <br />";
+                                        }
+                                        <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.ID)" aria-expanded="true" aria-controls="collapseSum@(Model.ID)">
+                                            @firstContractor... <span class="badge badge-info">@contractorCount</span>
+                                        </a>
+                                        <div class="collapse" id="collapseSum@(Model.ID)">
+                                            @Html.Raw(contractorList)
+                                        </div> }
+                                    else
+                                    {
+                                        @firstContractor
+                                    }
+                                }
+                            }
+                        </dd>
+                    }
+                    @{
+
+                        int customerCount = Model.CompanyCustomers.Count;
+                    }
+                    @if (Model.IsCustomer && customerCount > 0)
+                    {
+                        <dt class="float-left ml-2">
+                            Customer Type
+                        </dt>
+                        <dd>
+                            &nbsp;:
+                            @*@Html.DisplayFor(model => model.IsCustomer) &nbsp;*@
+                            @{
+                                if (customerCount > 0)
+                                {
+                                    string firstCustomer = Model.CompanyCustomers.FirstOrDefault().Customer.CustomerName;
+                                    if (customerCount > 1)
+                                    {
+                                        string customerList = "";
+                                        var c = Model.CompanyCustomers.ToList();
+                                        for (int i = 1; i < customerCount; i++)
+                                        {
+                                            customerList += c[i].Customer.CustomerName + " <br />";
+                                        }
+                                        <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.ID)">
+                                            @firstCustomer... <span class="badge badge-info">@customerCount</span>
+                                        </a>
+                                        <div class="collapse" id="collapseSum@(Model.ID)">
+                                            @Html.Raw(customerList)
+                                        </div> }
+                                    else
+                                    {
+                                        @firstCustomer
+                                    }
+                                }
+                            }
+                        </dd>
+                    }
+                    @{
+                        int vendorCount = Model.CompanyVendors.Count;
+                    }
+                    @if (Model.IsVendor && vendorCount > 0)
+                    {
+                        <dt class="float-left ml-2">
+                            Vendor Type
+                        </dt>
+                        <dd>
+                            &nbsp;:
+                            @*@Html.DisplayFor(model => model.IsVendor) &nbsp;*@
+                            @{
+                                if (vendorCount > 0)
+                                {
+                                    string firstVendor = Model.CompanyVendors.FirstOrDefault().Vendor.VendorName;
+                                    if (vendorCount > 1)
+                                    {
+                                        string vendorList = " ";
+                                        var c = Model.CompanyVendors.ToList();
+                                        for (int i = 1; i < vendorCount; i++)
+                                        {
+                                            vendorList += c[i].Vendor.VendorName + " <br />";
+                                        }
+                                        <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.ID)">
+                                            @firstVendor... <span class="badge badge-info">@vendorCount</span>
+                                        </a>
+                                        <div class="collapse" id="collapseSum@(Model.ID)">
+                                            @Html.Raw(vendorList)
+                                        </div> }
+                                    else
+                                    {
+                                        @firstVendor
+                                    }
+                                }
+                            }
+                        </dd>
+                    }
+                </dl>
+            </div>
+        </div>
+        <div class="col-md-6 mt-1 p-1">
+            <div class="col-md-12 bg-light p-1">
+                <h4 class="text-center">Accounting</h4>
+
+                <dl>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.CreditCheck)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.CreditCheck)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.CreditCheckDate)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.CreditCheckDate)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.Currency)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.Currency.CurrencyName)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.BillingTerm)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.BillingTerm.TermName)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.IsActive)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-1 p-1">
+        <div class="col-md-6 mt-1 p-1">
+            <div class="col-md-12 bg-light p-1">
+                <h4 class="text-center">Billing</h4>
+
+                <dl>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.BillingAddressOne)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.BillingAddressOne)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.BillingAddressTwo)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.BillingAddressTwo)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.BillingPostal)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.BillingPostal)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.BillingCountry)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.BillingCountry.countryName)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.BillingProvince)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.BillingProvince.provName)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.BillingCity)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.BillingCity.cityName)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="col-md-6 mt-1 p-1">
+            <div class="col-md-12 bg-light p-1">
+                <h4 class="text-center">Shipping</h4>
+
+                <dl>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.ShippingAddressOne)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.ShippingAddressOne)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.ShippingAddressTwo)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.ShippingAddressTwo)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.ShippingPostal)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.ShippingPostal)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.ShippingCountry)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.ShippingCountry.countryName)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.ShippingProvince)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.ShippingProvince.provName)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.ShippingCity)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.ShippingCity.cityName)
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+        
+        
+    </div>
+
+    <div class="row mt-1 p-1">
+        <div class="col-md-12 bg-light mt-1 p-1">
+
+            <h4 class="text-center">Contacts</h4>
+            <div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">Add New Contact</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            @{ var d = new HagerIndustries.Models.Contact();
+                                <partial name="_ContactCreate" model="d" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered table-condensed">
+                <colgroup>
+                    <col span="1" />
+                    <col span="1" />
+                    <col span="1" />
+                    @*<col span="1" />*@
+                </colgroup>
+                <tr>
+                    <th>
+                        <label class="btn btn-link font-weight-bold">Full Name</label>
+                    </th>
+                    <th>
+                        <label value="Email" class="btn btn-link font-weight-bold">Email</label>
+                    </th>
+                    <th>
+                        <label value="Job Title" class="btn btn-link font-weight-bold">Job Title</label>
+                    </th>
+
+                </tr>
+
+                @foreach (var item in Model.Contacts)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JobTitle)
+                        </td>
+
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    <div class="row mt-1 p-1 bg-light">
+        <a href='@ViewData["returnURL"]' class="btn btn-outline-primary">Back to List of Companies</a>&nbsp;
+        @if (User.IsInRole("Admin") || User.IsInRole("Supervisor"))
+        {
+            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.ID">Edit</a>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+
+    </script>
+    <script type="text/javascript">
+        $('#submitCreateContact').click(function (event) {
+            event.preventDefault();
+            $('#CompanyID').val($('#ID').val());
+            var form = $('#createContactForm');
+            if (form.valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#addContactModal').modal('hide');
+                    },
+                    error: function () {
+                        alert("Create Failed.  There was a problem adding the record.");
+                    }
+                });
+            }
+            return false;
+        });
+        $('#addContactModal').on('hide.bs.modal', function () {
+            $('#createContactForm').find("input[type=text], textarea, select").val("");//to clear the data in the popup
+            //refreshDDL('ContactID', 'Patients/GetContacts', false, '');
+        });
+    </script>
+}

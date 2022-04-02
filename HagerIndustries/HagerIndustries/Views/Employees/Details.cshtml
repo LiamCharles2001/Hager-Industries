@@ -1,0 +1,212 @@
+﻿@model HagerIndustries.Models.Employee
+
+@{ ViewData["Title"] = "Employee Details"; }
+<input type="hidden" asp-for="ID" />
+
+<div class="dtwrapper">
+
+
+</div>
+
+<div class="container-fluid bg-white">
+    <div class="row mt-1 p-1">
+        <div class="col-md-12 bg-light mt-1 p-1">
+            <h3 class="text-center">
+                Details: @Html.DisplayFor(model => model.FullName)
+            </h3>
+        </div>
+    </div>
+    <div class="row mt-1 p-1">
+        <div class="col-md-12 mt-1 p-1">
+            <div class="col-md-12 bg-light mt-1 p-1">
+                <h4 class="text-center">Basic</h4>
+                <dl>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.AddressOne)
+                        </dt>
+                        <dd class="">
+                            &nbsp;: @Html.DisplayFor(model => model.AddressOne)
+                        </dd>
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.AddressTwo)
+                        </dt>
+                        <dd>
+                            &nbsp;: @Html.DisplayFor(model => model.AddressTwo)
+                        </dd>
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.Postal)
+                        </dt>
+                        <dd>
+                            &nbsp;: @Html.DisplayFor(model => model.Postal)
+                        </dd>
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.CellPhone)
+                        </dt>
+                        <dd>
+                            &nbsp;: @Html.DisplayFor(model => model.CellPhone)
+                        </dd>
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.HomePhone)
+                        </dt>
+                        <dd>
+                            &nbsp;:  @Html.DisplayFor(model => model.HomePhone)
+                        </dd>
+                    }
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.DOB)
+                        </dt>
+                        <dd>
+                            &nbsp;: @Html.DisplayFor(model => model.DOB)
+                        </dd>
+                    }
+                </dl>
+            </div>
+        </div>
+        <div class="col-md-6 mt-1 p-1">
+            <div class="col-md-12 bg-light p-1">
+                <h4 class="text-center">Accounting</h4>
+                <dl>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.DateJoined)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.DateJoined)
+                    </dd>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.Wage)
+                        </dt>
+                        <dd>
+                            &nbsp;:  @Html.DisplayFor(model => model.Wage)
+                        </dd>
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.Expense)
+                        </dt>
+                        <dd>
+                            &nbsp;:   @Html.DisplayFor(model => model.Expense)
+                        </dd>
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.KeyFobNumber)
+                        </dt>
+                        <dd>
+                            &nbsp;: @Html.DisplayFor(model => model.KeyFobNumber)
+                        </dd>
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </dt>
+                        <dd>
+                            &nbsp;:   @Html.DisplayFor(model => model.IsActive)
+                        </dd>
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.IsUser)
+                        </dt>
+                        <dd>
+                            &nbsp;:    @Html.DisplayFor(model => model.IsUser)
+                        </dd>
+                    }
+                </dl>
+            </div>
+        </div>
+        <div class="col-md-6 mt-1 p-1">
+            <div class="col-md-12 bg-light p-1">
+                <h4 class="text-center">General</h4>
+                <dl>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.EmergencyContactName)
+                        </dt>
+                        <dd>
+                            &nbsp;: @Html.DisplayFor(model => model.EmergencyContactName)
+                        </dd>
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.EmergencyContactPhone)
+                        </dt>
+                        <dd>
+                            &nbsp;: @Html.DisplayFor(model => model.EmergencyContactPhone)
+                        </dd>
+                    }
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.Note)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.Note)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.Position)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.Position.PosName)
+                    </dd>
+                    <dt class="float-left ml-2">
+                        @Html.DisplayNameFor(model => model.Employment)
+                    </dt>
+                    <dd>
+                        &nbsp;: @Html.DisplayFor(model => model.Employment.EmplType)
+                    </dd>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.Country)
+                        </dt>
+                        <dd>
+                            &nbsp;: @Html.DisplayFor(model => model.Country.countryName)
+                        </dd>
+                        <dt class="float-left ml-2">
+                            @Html.DisplayNameFor(model => model.Province)
+                        </dt>
+                        <dd>
+                            &nbsp;:  @Html.DisplayFor(model => model.Province.provName)
+                        </dd>
+                    }
+                <dt class="float-left ml-2">
+                    @Html.DisplayNameFor(model => model.EmployeeSkills) &nbsp;: &nbsp;
+                </dt>
+                    <dd>
+                        @{ int skillCount = Model.EmployeeSkills.Count;
+                            if (skillCount > 0)
+                            {
+                                string firstSkill = Model.EmployeeSkills.FirstOrDefault().Skill.SkillName;
+                                if (skillCount > 1)
+                                {
+                                    string skillList = "";
+                                    var c = Model.EmployeeSkills.ToList();
+                                    for (int i = 1; i < skillCount; i++)
+                                    {
+                                        skillList += c[i].Skill.SkillName + " <br />";
+                                    }
+                                    <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.ID)">
+                                        @firstSkill... <span class="badge badge-info">@skillCount</span>
+                                    </a>
+                                    <div class="collapse" id="collapseSum@(Model.ID)">
+                                        @Html.Raw(skillList)
+                                    </div> }
+                                else
+                                {
+                                    @firstSkill }
+                            } }
+                        @*For help with Bootstrap Collapse see: https://getbootstrap.com/docs/4.3/components/collapse/*@
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-1 p-1 bg-light">
+        <a href='@ViewData["returnURL"]' class="btn btn-outline-primary">Back to List of Employees</a>&nbsp;
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.ID">Edit</a>
+        }
+    </div>
+</div>

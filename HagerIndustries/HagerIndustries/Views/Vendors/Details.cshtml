@@ -1,0 +1,33 @@
+﻿@model HagerIndustries.Models.Vendor
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Vendor</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VendorName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VendorName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VendorDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VendorDescription)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("Admin") || User.IsInRole("Supervisor"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> <span> | </span>
+    }
+<a asp-action="Index" asp-controller="Lookups" asp-route-Tab="VendorsTab">Back to Lookup List</a>
+</div>

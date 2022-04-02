@@ -1,0 +1,49 @@
+﻿@model HagerIndustries.Models.City
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>City</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="cityName" class="control-label"></label>
+                <input asp-for="cityName" class="form-control" />
+                <span asp-validation-for="cityName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label"></label>
+                <select id="CountryID" name="CountryID" class="form-control" asp-items="ViewBag.CountryID">
+                    <option value="">--Select Country--</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProvinceID" class="control-label"></label>
+                <select asp-for="ProvinceID" class="form-control" asp-items="ViewBag.ProvinceID">
+                    <option value="">--Select Province--</option>
+
+                </select>
+                <span asp-validation-for="ProvinceID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Lookups" asp-route-Tab="ProvincesTab">Back to Lookup List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
